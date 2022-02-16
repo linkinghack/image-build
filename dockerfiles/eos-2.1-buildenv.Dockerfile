@@ -1,0 +1,30 @@
+FROM ubuntu:20.04
+WORKDIR /app
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    make \
+    bzip2 \
+    automake \
+    libbz2-dev \
+    libssl-dev \
+    doxygen \
+    graphviz \
+    libgmp3-dev \
+    autotools-dev \
+    python2.7 \
+    python2.7-dev \
+    python3 \
+    python3-dev \
+    autoconf \
+    libtool \
+    curl \
+    zlib1g-dev \
+    sudo \
+    ruby \
+    libusb-1.0-0-dev \
+    libcurl4-gnutls-dev \
+    pkg-config \
+    patch \
+    lsb-release \
+    gnupg
