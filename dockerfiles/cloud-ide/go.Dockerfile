@@ -3,10 +3,12 @@ COPY ./product.json /usr/lib/code-server/lib/vscode/product.json
 
 ARG TARGETPLATFORM
 
-## install dev tools for C++ development
+## install dev tools for Go development
 RUN sudo apt update \
-  && if [ ${TARGETPLATFORM} == "linux/amd64" ] export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-amd64.tar.gz; else export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-arm64.tar.gz; fi  \
-  && sudo apt install vim curl wget make net-tools \
+    && sudo apt install vim curl wget make net-tools
+
+## install go compiler
+RUN if [ ${TARGETPLATFORM} == "linux/amd64" ] export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-amd64.tar.gz; else export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-arm64.tar.gz; fi  \
   && curl -sSL -o go.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -xzf go.tar.gz \
   && rm -f go.tar.gz \
