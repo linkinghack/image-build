@@ -38,11 +38,11 @@ USER coder
 ## configure jenv
 RUN git clone https://github.com/jenv/jenv.git ~/.jenv \
   && echo 'export PATH="$HOME/.jenv/bin:$PATH"' >> ~/.bash_profile \
-  && echo 'eval "$(jenv init -)"' >> ~/.bash_profile \
-  && export PATH="$HOME/.jenv/bin:$PATH" \
-  && jenv add /usr/local/jdk8u322-b06 \
-  && jenv add /usr/local/jdk-11.0.14.1+1 \
-  && jenv add /usr/local/jdk-18+36
+  && echo 'eval "$(jenv init -)"' >> ~/.bash_profile
+#   && export PATH="$HOME/.jenv/bin:$PATH" \
+#   && jenv add /usr/local/jdk8u322-b06 \
+#   && jenv add /usr/local/jdk-11.0.14.1+1 \
+#   && jenv add /usr/local/jdk-18+36
 
 ENV JAVA_HOME=/usr/local/jdk8u322-b06
 ENV MAVEN_HOME=/usr/local/apache-maven-3.8.5
