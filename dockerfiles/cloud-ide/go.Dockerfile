@@ -14,6 +14,6 @@ RUN if [ "${TARGETPLATFORM}" == "linux/amd64" ]; then export DOWNLOAD_URL=https:
   && curl -sSL -o go.tar.gz ${DOWNLOAD_URL} \
   &&  tar -C /usr/local -xzf go.tar.gz \
   && rm -f go.tar.gz \
-  &&  echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
+  &&  echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/coder/.bashrc
 
 USER coder
