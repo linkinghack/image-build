@@ -28,7 +28,7 @@ RUN  if [ ${TARGETPLATFORM}} == "linux/amd64" ]; then export DOWNLOAD_URL=https:
   && tar -C /usr/local -zxf ./maven.tar.gz \
   && rm -f maven.tar.gz \
   && echo "PATH=$PATH:/usr/local/apache-maven-3.8.5/bin" >> /home/coder/.bashrc \
-  && curl -sSL -o gradle.zip https://gradle.org/next-steps/?version=7.4.2&format=all \
+  && curl -sSL -o gradle.zip https://services.gradle.org/distributions/gradle-7.4.2-all.zip \
   && unzip -d /usr/local ./gradle.zip \
   && rm -f gradle.zip \
   && echo "PATH=$PATH:/usr/local/gradle-7.4.2/bin" >> /home/coder/.bashrc
