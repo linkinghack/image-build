@@ -8,7 +8,8 @@ COPY ./lang_specific_confs/maven.settings.xml /home/coder/.m2/settings.xml
 USER root
 ## install dev tools for Java development
 RUN sudo apt update \
-  && sudo apt install curl vim wget unzip net-tools -y \
+  && apt upgrade -y \
+  && sudo apt install curl vim wget unzip -y \
   && if [ ${TARGETPLATFORM}} == "linux/amd64" ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_aarch64_linux_hotspot_8u322b06.tar.gz; fi \
   && curl -sSL -o java8.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -zxf java8.tar.gz \
