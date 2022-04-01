@@ -7,7 +7,7 @@ USER root
 ## install dev tools for Go development
 RUN sudo apt update \
     && sudo apt upgrade -y \
-    && sudo apt install vim gcc gdb g++ curl wget make net-tools -y
+    && sudo apt install vim gcc gdb g++ curl wget make net-tools unzip -y
 
 ## install go compiler
 RUN if [ "${TARGETPLATFORM}" == "linux/amd64" ]; then export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-amd64.tar.gz; else export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-arm64.tar.gz; fi \
