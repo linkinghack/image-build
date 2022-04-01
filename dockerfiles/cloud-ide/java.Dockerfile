@@ -9,8 +9,9 @@ USER root
 ## install dev tools for Java development
 RUN sudo apt update \
   && apt upgrade -y \
-  && sudo apt install curl vim wget unzip -y \
-  && if [ ${TARGETPLATFORM}} == "linux/amd64" ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_aarch64_linux_hotspot_8u322b06.tar.gz; fi \
+  && sudo apt install curl vim wget unzip -y
+
+RUN  if [ ${TARGETPLATFORM}} == "linux/amd64" ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_aarch64_linux_hotspot_8u322b06.tar.gz; fi \
   && curl -sSL -o java8.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -zxf java8.tar.gz \
   && rm -f java8.tar.gz \
@@ -28,7 +29,7 @@ RUN sudo apt update \
   && rm -f maven.tar.gz \
   && echo "PATH=$PATH:/usr/local/apache-maven-3.8.5/bin" >> /home/coder/.bashrc \
   && curl -sSL -o gradle.zip https://gradle.org/next-steps/?version=7.4.2&format=all \
-  && unzip -d /usr/local gradle.zip \
+  && unzip -d /usr/local ./gradle.zip \
   && rm -f gradle.zip \
   && echo "PATH=$PATH:/usr/local/gradle-7.4.2/bin" >> /home/coder/.bashrc
 
