@@ -36,7 +36,15 @@ RUN  if [ ${TARGETPLATFORM}} == "linux/amd64" ]; then export DOWNLOAD_URL=https:
   && rm -f gradle.zip \
   && echo "PATH=$PATH:/usr/local/gradle-7.4.2/bin" >> /home/coder/.bashrc
 
-USER coder
+## create user
+ENV PUID=1001
+ENV PGID=1001
+RUN useradd -m -u 1001 panzhou-user \
+  && chown panzhou-user:panzhou-user /app \
+  && chown panzhou-user:panzhou-user /config \
+  && chown panzhou-user:panzhou-user /defaults
+
+USER panzhou-user
 
 ## configure jenv
 RUN git clone https://github.com/jenv/jenv.git ~/.jenv \
