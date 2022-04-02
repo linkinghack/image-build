@@ -1,5 +1,8 @@
-FROM codercom/code-server:4.2.0
-COPY ./product.json /usr/lib/code-server/lib/vscode/product.json
+FROM docker AS docker-cli
+
+FROM lscr.io/linuxserver/code-server:4.2.0-ls117
+COPY product.json /usr/lib/code-server/lib/vscode/product.json
+COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 
 ARG TARGETPLATFORM
 
@@ -14,6 +17,6 @@ RUN if [ "${TARGETPLATFORM}" == "linux/amd64" ]; then export DOWNLOAD_URL=https:
   && curl -sSL -o go.tar.gz ${DOWNLOAD_URL} \
   &&  tar -C /usr/local -xzf go.tar.gz \
   && rm -f go.tar.gz \
-  &&  echo 'export PATH=$PATH:/usr/local/go/bin' >> /home/coder/.bashrc
+  &&  echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
 
 USER coder

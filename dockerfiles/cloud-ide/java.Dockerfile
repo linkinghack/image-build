@@ -1,8 +1,11 @@
-FROM codercom/code-server:4.2.0
+FROM docker AS docker-cli
+
+FROM lscr.io/linuxserver/code-server:4.2.0-ls117
 ARG TARGETPLATFORM
 
-COPY ./product.json /usr/lib/code-server/lib/vscode/product.json
-COPY ./lang_specific_confs/maven.settings.xml /home/coder/.m2/settings.xml
+COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
+COPY product.json /usr/lib/code-server/lib/vscode/product.json
+COPY lang_specific_confs/maven.settings.xml /home/coder/.m2/settings.xml
 
 
 USER root
