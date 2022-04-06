@@ -13,7 +13,7 @@ USER root
 #     && sudo apt install vim gcc gdb g++ curl wget make net-tools unzip -y
 
 ## install go compiler
-RUN if [[ ${TARGETPLATFORM} == 'linux/amd64' ]];  \
+RUN if [ "${TARGETPLATFORM}" = 'linux/amd64' ];  \
     then export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-amd64.tar.gz; \
     curl -sSL -o go-amd.tar.gz ${DOWNLOAD_URL}; \
     tar -C /usr/local -xzf go-amd.tar.gz; \
