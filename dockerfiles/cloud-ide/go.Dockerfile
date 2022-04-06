@@ -13,7 +13,7 @@ RUN sudo apt update \
     && sudo apt install vim gcc gdb g++ curl wget make net-tools unzip -y
 
 ## install go compiler
-RUN if [ "${TARGETPLATFORM}" == "linux/amd64" ]; then export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-amd64.tar.gz; else export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-arm64.tar.gz; fi \
+RUN if [ "${TARGETPLATFORM}" == 'linux/amd64' ]; then export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-amd64.tar.gz; else export DOWNLOAD_URL=https://go.dev/dl/go1.18.linux-arm64.tar.gz; fi \
   && curl -sSL -o go.tar.gz ${DOWNLOAD_URL} \
   &&  tar -C /usr/local -xzf go.tar.gz \
   && rm -f go.tar.gz \
@@ -27,4 +27,4 @@ RUN useradd -m -u 1001 panzhou-user \
   && chown panzhou-user:panzhou-user /config \
   && chown panzhou-user:panzhou-user /defaults
 
-USER panzhou-user
+# USER panzhou-user
