@@ -44,7 +44,7 @@ RUN git clone https://github.com/jenv/jenv.git /config/.jenv \
 #   && jenv add /usr/local/jdk8u322-b06 \
 #   && jenv add /usr/local/jdk-11.0.14.1+1 \
 #   && jenv add /usr/local/jdk-18+36
-RUN chmod 755 /config/.jenv
+RUN chmod -R 755 /config/.jenv
 
 ENV JAVA_HOME=/usr/local/jdk8u322-b06
 ENV MAVEN_HOME=/usr/local/apache-maven-3.8.5
