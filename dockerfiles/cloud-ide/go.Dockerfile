@@ -31,7 +31,11 @@ RUN go install -v github.com/cweill/gotests/gotests@latest \
   && go install -v github.com/ramya-rao-a/go-outline@latest \ 
   && go install -v github.com/fatih/gomodifytags@latest \ 
   && go install -v github.com/josharian/impl@latest \ 
-  && go install -v github.com/haya14busa/goplay/cmd/goplay@latest \ 
+  && go install -v github.com/haya14busa/goplay/cmd/goplay@latest \
+  && go install -v github.com/go-delve/delve/cmd/dlv@latest \
+  && go install -v honnef.co/go/tools/cmd/staticcheck@latest \
+  && go install -v golang.org/x/tools/gopls@latest 
+  
 ## create user
 ENV PUID=1001
 ENV PGID=1001
