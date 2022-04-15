@@ -5,7 +5,7 @@
     <mirror>
         <id>aliyun-central</id>
         <mirrorOf>*</mirrorOf>
-        <name>磐舟公共仓库</name>
+        <name>公共仓库</name>
         <url>https://artifactory.dep.devops.cmit.cloud:20101/maven/</url>
     </mirror>
 </mirrors>
