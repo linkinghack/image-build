@@ -26,7 +26,8 @@ RUN if [ "${TARGETPLATFORM}" = 'linux/amd64' ];  \
   &&  echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
 
 ## install tools
-RUN go install -v github.com/cweill/gotests/gotests@latest \
+RUN export PATH=$PATH:/usr/local/go/bin \
+  && go install -v github.com/cweill/gotests/gotests@latest \
   && go install -v github.com/ramya-rao-a/go-outline@latest \ 
   && go install -v github.com/ramya-rao-a/go-outline@latest \ 
   && go install -v github.com/fatih/gomodifytags@latest \ 
