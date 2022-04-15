@@ -1,6 +1,6 @@
 FROM docker AS docker-cli
 
-FROM linkinghack/code-server:4.2.0-ls117
+FROM linkinghack/code-server:4.3.0-ls119
 COPY product.json /usr/lib/code-server/lib/vscode/product.json
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 

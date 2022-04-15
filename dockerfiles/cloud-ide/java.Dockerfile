@@ -1,6 +1,6 @@
 FROM docker AS docker-cli
 
-FROM linkinghack/code-server:4.2.0-ls117
+FROM linkinghack/code-server:4.3.0-ls119
 ARG TARGETPLATFORM
 
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
@@ -12,13 +12,13 @@ USER root
 ## install dev tools for Java development
 RUN sudo apt update \
   && apt upgrade -y \
-  && sudo apt install curl vim wget unzip -y
+  && sudo apt install curl vim wget unzip nano zsh -y
 
 RUN  if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u322-b06/OpenJDK8U-jdk_aarch64_linux_hotspot_8u322b06.tar.gz; fi \
   && curl -sSL -o java8.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -zxf java8.tar.gz \
   && rm -f java8.tar.gz \
-  && echo "export PATH=$PATH:/usr/local/jdk8u322-b06/bin" >> /config/.bashrc \
+  && echo "export PATH=$PATH:/usr/local/jdk8u322-b06/bin" >> /etc/profile \
   && if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14.1%2B1/OpenJDK11U-jdk_x64_linux_hotspot_11.0.14.1_1.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14.1%2B1/OpenJDK11U-jdk_aarch64_linux_hotspot_11.0.14.1_1.tar.gz; fi \
   && curl -sSL -o java11.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -zxf java11.tar.gz \
@@ -30,11 +30,11 @@ RUN  if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https:
   && curl -sSL -o maven.tar.gz https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.tar.gz \
   && tar -C /usr/local -zxf ./maven.tar.gz \
   && rm -f maven.tar.gz \
-  && echo "export PATH=$PATH:/usr/local/apache-maven-3.8.5/bin" >> /config/.bashrc \
+  && echo "export PATH=$PATH:/usr/local/apache-maven-3.8.5/bin" >> /etc/profile \
   && curl -sSL -o gradle.zip https://services.gradle.org/distributions/gradle-7.4.2-all.zip \
   && unzip -d /usr/local ./gradle.zip \
   && rm -f gradle.zip \
-  && echo "export PATH=$PATH:/usr/local/gradle-7.4.2/bin" >> /config/.bashrc
+  && echo "export PATH=$PATH:/usr/local/gradle-7.4.2/bin" >> /etc/profile
 
 # create user
 ENV PUID=1001
