@@ -7,10 +7,10 @@ COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 ARG TARGETPLATFORM
 
 USER root
-## install dev tools for Go development
-# RUN sudo apt update \
-#     && sudo apt upgrade -y \
-#     && sudo apt install vim gcc gdb g++ curl wget make net-tools unzip -y
+# install dev tools for Go development
+RUN sudo apt update \
+    && sudo apt upgrade -y \
+    && sudo apt install nano vim gcc gdb g++ curl wget make net-tools unzip zsh -y
 
 ## install go compiler
 RUN if [ "${TARGETPLATFORM}" = 'linux/amd64' ];  \
