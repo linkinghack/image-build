@@ -49,4 +49,5 @@ RUN chmod -R 755 /config/.jenv
 ENV JAVA_HOME=/usr/local/jdk8u322-b06
 ENV MAVEN_HOME=/usr/local/apache-maven-3.8.5
 ENV GRADLE_HOME=/usr/local/gradle-7.4.2
+ENV PATH="$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${GRADLE_HOME}/bin"
 USER root
