@@ -23,7 +23,7 @@ RUN if [ "${TARGETPLATFORM}" = 'linux/amd64' ];  \
     tar -C /usr/local -xzf go-arm.tar.gz; \
     rm -f go-arm.tar.gz; \
   fi \
-  &&  echo 'export PATH=$PATH:/usr/local/go/bin' >> /etc/profile
+  &&  echo 'export PATH=\$PATH:/usr/local/go/bin' >> /etc/profile
 
 ## install tools
 RUN export PATH=$PATH:/usr/local/go/bin \
