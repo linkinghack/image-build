@@ -38,7 +38,7 @@ RUN  if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https:
 
 ## configure jenv
 RUN git clone https://github.com/jenv/jenv.git /config/.jenv \
-  && echo 'export PATH="$HOME/.jenv/bin:\$PATH"' >> /config/.bash_profile \
+  && echo 'export PATH=\$HOME/.jenv/bin:\$PATH' >> /config/.bash_profile \
   && echo 'eval "$(jenv init -)"' >> /config/.bash_profile
 #   && export PATH="$HOME/.jenv/bin:$PATH" \
 #   && jenv add /usr/local/jdk8u322-b06 \
