@@ -1,11 +1,12 @@
 FROM docker AS docker-cli
 
-FROM lscr.io/linuxserver/code-server:4.3.0-ls119
+FROM lscr.io/linuxserver/code-server:4.4.0-ls125
 ARG TARGETPLATFORM
 
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 COPY product.json /usr/lib/code-server/lib/vscode/product.json
 COPY lang_specific_confs/maven.settings.xml /config/.m2/settings.xml
+COPY lang_specific_confs/maven.settings.xml /root/.m2/settings.xml
 
 
 USER root
@@ -18,10 +19,10 @@ RUN  if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https:
   && curl -sSL -o java8.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -zxf java8.tar.gz \
   && rm -f java8.tar.gz \
-  && export PATH=$PATH:/usr/local/jdk8u322-b06/bin \
   && if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14.1%2B1/OpenJDK11U-jdk_x64_linux_hotspot_11.0.14.1_1.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.14.1%2B1/OpenJDK11U-jdk_aarch64_linux_hotspot_11.0.14.1_1.tar.gz; fi \
   && curl -sSL -o java11.tar.gz ${DOWNLOAD_URL} \
   && tar -C /usr/local -zxf java11.tar.gz \
+  && export PATH=$PATH:/usr/local/jdk-11.0.14.1+1/bin \
   && rm -f java11.tar.gz \
   && if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin18-binaries/releases/download/jdk-18%2B36/OpenJDK18U-jdk_x64_linux_hotspot_18_36.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin18-binaries/releases/download/jdk-18%2B36/OpenJDK18U-jdk_aarch64_linux_hotspot_18_36.tar.gz; fi \
   && curl -sSL -o java18.tar.gz ${DOWNLOAD_URL} \
@@ -40,14 +41,16 @@ RUN  if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https:
 ## configure jenv
 RUN git clone https://github.com/jenv/jenv.git /config/.jenv \
   && echo 'export PATH=$HOME/.jenv/bin:$PATH' >> /config/.bash_profile \
-  && echo 'eval "$(jenv init -)"' >> /config/.bash_profile
+  && echo 'eval "$(jenv init -)"' >> /config/.bash_profile \
+  && echo 'export PATH=$HOME/.jenv/bin:$PATH' >> /root/.bash_profile \
+  && echo 'eval "$(jenv init -)"' >> /root/.bash_profile
 #   && export PATH="$HOME/.jenv/bin:$PATH" \
 #   && jenv add /usr/local/jdk8u322-b06 \
 #   && jenv add /usr/local/jdk-11.0.14.1+1 \
 #   && jenv add /usr/local/jdk-18+36
 RUN chmod -R 755 /config/.jenv
 
-ENV JAVA_HOME=/usr/local/jdk8u322-b06
+ENV JAVA_HOME=/usr/local/jdk-11.0.14.1+1
 ENV MAVEN_HOME=/usr/local/apache-maven-3.8.5
 ENV GRADLE_HOME=/usr/local/gradle-7.4.2
 # ENV PATH="$PATH:${JAVA_HOME}/bin:${MAVEN_HOME}/bin:${GRADLE_HOME}/bin"

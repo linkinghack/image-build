@@ -3,7 +3,7 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
 <mirrors>
     <mirror>
-        <id>aliyun-central</id>
+        <id>central</id>
         <mirrorOf>*</mirrorOf>
         <name>公共仓库</name>
         <url>https://artifactory.dep.devops.cmit.cloud:20101/maven/</url>
