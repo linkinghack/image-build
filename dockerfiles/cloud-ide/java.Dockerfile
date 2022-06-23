@@ -14,11 +14,6 @@ USER root
 RUN sudo apt update \
   && sudo apt upgrade -y \
   && sudo apt install curl vim wget unzip nano zsh -y
-RUN chsh -s /usr/bin/zsh
-
-USER 911:911
-RUN chsh -s /usr/bin/zsh
-USER root
 
 RUN  if [ "${TARGETPLATFORM}" = 'linux/amd64' ]; then export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u332-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u332b09.tar.gz; else export DOWNLOAD_URL=https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u332-b09/OpenJDK8U-jdk_aarch64_linux_hotspot_8u332b09.tar.gz; fi \
   && curl -sSL -o java8.tar.gz ${DOWNLOAD_URL} \

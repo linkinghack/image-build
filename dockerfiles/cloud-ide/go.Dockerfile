@@ -1,6 +1,6 @@
 FROM docker AS docker-cli
 
-FROM lscr.io/linuxserver/code-server:4.3.0-ls119
+FROM lscr.io/linuxserver/code-server:4.4.0-ls125
 COPY product.json /usr/lib/code-server/lib/vscode/product.json
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 
