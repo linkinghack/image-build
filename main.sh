@@ -10,4 +10,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 
 # build dbg-tool
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.2 -f ./dockerfiles/dbg-tool/v1.2.Dockerfile ./dockerfiles/dbg-tool --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.2 -f ./dockerfiles/dbg-tool/v1.2.Dockerfile ./dockerfiles/dbg-tool --push;
+
+# build enhanced base image
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/ubuntu:jammy-fat ./dockerfiles/base-img/ubuntu.Dockerfile ./dockerfiles/base-img/ --push;
