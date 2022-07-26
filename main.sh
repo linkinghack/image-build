@@ -13,4 +13,6 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.2 -f ./dockerfiles/dbg-tool/v1.2.Dockerfile ./dockerfiles/dbg-tool --push;
 
 # build enhanced base image
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dev-container:220726 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img/ --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dev-container:220726 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img/ --push;
+docker build -t -t linkinghack/dev-container:220726 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img/;
+docker push linkinghack/dev-container:220726;
