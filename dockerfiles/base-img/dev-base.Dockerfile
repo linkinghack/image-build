@@ -34,7 +34,8 @@ ENV PATH="${NVM_DIR}/current/bin:${NPM_GLOBAL}/bin:${PYTHON_ROOT}/current/bin:${
 
 # Install needed utilities and setup non-root user. Use a separate RUN statement to add your own dependencies.
 COPY library-scripts/* setup-user.sh setup-python-tools.sh first-run-notice.txt /tmp/scripts/
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+RUN mv /home/codespace /home/devspace \
+    && apt-get update && export DEBIAN_FRONTEND=noninteractive \
     # Restore man command
     && yes | unminimize 2>&1 \ 
     # Run common script and setup user
