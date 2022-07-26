@@ -14,5 +14,5 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 # build enhanced base image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dev-container:220726 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img/ --push;
-docker build -t -t linkinghack/dev-container:220726 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img/;
+docker build -t linkinghack/dev-container:220726 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img/;
 docker push linkinghack/dev-container:220726;
