@@ -1,6 +1,7 @@
 FROM docker AS docker-cli
 
-FROM lscr.io/linuxserver/code-server:4.4.0-ls125
+# FROM lscr.io/linuxserver/code-server:4.4.0-ls125
+FROM linkinghack/code-server-base:220722
 ARG TARGETPLATFORM
 
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker

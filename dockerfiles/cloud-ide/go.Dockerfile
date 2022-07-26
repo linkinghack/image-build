@@ -1,16 +1,17 @@
 FROM docker AS docker-cli
 
-FROM lscr.io/linuxserver/code-server:4.4.0-ls125
-COPY product.json /usr/lib/code-server/lib/vscode/product.json
+# FROM lscr.io/linuxserver/code-server:4.4.0-ls125
+FROM linkinghack/code-server-base:220722
+# COPY product.json /usr/lib/code-server/lib/vscode/product.json
 COPY --from=docker-cli /usr/local/bin/docker /usr/local/bin/docker
 
 ARG TARGETPLATFORM
 
-USER root
+# USER root
 # install dev tools for Go development
-RUN sudo apt update \
-    && sudo apt upgrade -y \
-    && sudo apt install nano vim gcc gdb g++ curl wget make net-tools unzip zsh -y
+RUN apt update \
+    && apt upgrade -y \
+    && apt install nano vim gcc gdb g++ curl wget make net-tools unzip zsh -y
 
 ## install go compiler
 RUN if [ "${TARGETPLATFORM}" = 'linux/amd64' ];  \
@@ -28,21 +29,20 @@ RUN if [ "${TARGETPLATFORM}" = 'linux/amd64' ];  \
 ## install tools
 RUN export PATH=$PATH:/usr/local/go/bin \
   && go install -v github.com/cweill/gotests/gotests@latest \
-  && go install -v github.com/ramya-rao-a/go-outline@latest \ 
-  && go install -v github.com/ramya-rao-a/go-outline@latest \ 
-  && go install -v github.com/fatih/gomodifytags@latest \ 
-  && go install -v github.com/josharian/impl@latest \ 
+  && go install -v github.com/ramya-rao-a/go-outline@latest \
+  && go install -v github.com/fatih/gomodifytags@latest \
+  && go install -v github.com/josharian/impl@latest \
   && go install -v github.com/haya14busa/goplay/cmd/goplay@latest \
   && go install -v github.com/go-delve/delve/cmd/dlv@latest \
   && go install -v honnef.co/go/tools/cmd/staticcheck@latest \
-  && go install -v golang.org/x/tools/gopls@latest 
+  && go install -v golang.org/x/tools/gopls@latest
   
 ## create user
-ENV PUID=1001
-ENV PGID=1001
-RUN useradd -m -u 1001 panzhou-user \
-  && chown panzhou-user:panzhou-user /app \
-  && chown panzhou-user:panzhou-user /config \
-  && chown panzhou-user:panzhou-user /defaults
+# ENV PUID=1001
+# ENV PGID=1001
+# RUN useradd -m -u 1001 panzhou-user \
+#   && chown panzhou-user:panzhou-user /app \
+#   && chown panzhou-user:panzhou-user /config \
+#   && chown panzhou-user:panzhou-user /defaults
 
 # USER panzhou-user
