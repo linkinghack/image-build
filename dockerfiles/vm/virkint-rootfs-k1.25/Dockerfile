@@ -26,10 +26,10 @@ RUN apt-get update -y && \
 
 RUN systemctl enable kubelet
 
-
+RUN sed -i 's+lock_passwd: True+lock_passwd: False\n     passwd: $6$rounds=4096$jW503YJN.qwW2TMm$vCkJw.v7yxX0mgiP5vrM5C9FBYatCD/vsjsWusPf3QGi55nhmRbHQl4JM6Qm0FUMTZyA34VVe/GG/fKG.kQBx/+g' /rootfs/etc/cloud/cloud.cfg
 # RUN adduser ubuntu -D
 # RUN echo 'root:vmadmin' | chpasswd
-COPY shadow /etc/shadow
+# COPY shadow /etc/shadow
 
 RUN apt update \
   && apt install openssh-server -y && systemctl enable ssh \
@@ -50,4 +50,4 @@ fe00::0 ip6-mcastprefix \n\
 fe00::1 ip6-allnodes \n\
 fe00::2 ip6-allrouters" > /rootfs/etc/hosts
 
-COPY shadow /etc/shadow
+# COPY shadow /etc/shadow
