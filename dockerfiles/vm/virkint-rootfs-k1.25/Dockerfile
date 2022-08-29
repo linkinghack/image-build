@@ -30,8 +30,8 @@ RUN apt update \
   && apt install openssh-server -y && systemctl enable ssh \
   && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
   && sed -i 's/#PermitRootLogin prohibit-password/#PermitRootLogin yes/' /etc/ssh/sshd_config
-  
-RUN echo 'vmadmin' | passwd --stdin root
+
+RUN echo 'root:vmadmin' | chpasswd
 
 RUN echo 'net.ipv4.conf.lxc*.rp_filter = 0' > /etc/sysctl.d/99-override_cilium_rp_filter.conf
 
