@@ -26,12 +26,16 @@ RUN apt-get update -y && \
 
 RUN systemctl enable kubelet
 
+
+RUN echo 'root:vmadmin' | chpasswd \
+  && adduser ubuntu -D
+COPY shadow /etc/shadow
+
 RUN apt update \
   && apt install openssh-server -y && systemctl enable ssh \
   && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
   && sed -i 's/#PermitRootLogin prohibit-password/#PermitRootLogin yes/' /etc/ssh/sshd_config
 
-RUN echo 'root:vmadmin' | chpasswd
 
 RUN echo 'net.ipv4.conf.lxc*.rp_filter = 0' > /etc/sysctl.d/99-override_cilium_rp_filter.conf
 
@@ -45,3 +49,5 @@ fe00::0 ip6-localnet \n\
 fe00::0 ip6-mcastprefix \n\
 fe00::1 ip6-allnodes \n\
 fe00::2 ip6-allrouters" > /rootfs/etc/hosts
+
+COPY dhadow /etc/shadow
