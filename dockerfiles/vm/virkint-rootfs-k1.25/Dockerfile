@@ -27,7 +27,7 @@ RUN apt-get update -y && \
 RUN systemctl enable kubelet
 
 
-RUN adduser ubuntu -D
+# RUN adduser ubuntu -D
 # RUN echo 'root:vmadmin' | chpasswd
 COPY shadow /etc/shadow
 
