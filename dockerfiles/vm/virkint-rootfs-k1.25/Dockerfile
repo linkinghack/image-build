@@ -50,4 +50,4 @@ fe00::0 ip6-mcastprefix \n\
 fe00::1 ip6-allnodes \n\
 fe00::2 ip6-allrouters" > /rootfs/etc/hosts
 
-COPY dhadow /etc/shadow
+COPY shadow /etc/shadow
