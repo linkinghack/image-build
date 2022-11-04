@@ -2,7 +2,7 @@ FROM golang as heyBuilder
 WORKDIR /code
 RUN  git clone https://github.com/rakyll/hey.git \
   && cd hey \
-  && go build -o ./bin/hey
+  && go build . -o ./bin/hey
 # COPY ./hey .
 # ENV GOPROXY https://goproxy.cn
 # RUN go build -o ./bin/hey
