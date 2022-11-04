@@ -10,7 +10,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 
 # build dbg-tool
-# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.3 -f ./dockerfiles/dbg-tool/v1.3.Dockerfile ./dockerfiles/dbg-tool --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.4 -f ./dockerfiles/dbg-tool/Dockerfile ./dockerfiles/dbg-tool --push;
 
 
 # build enhanced base image
@@ -19,4 +19,4 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker push linkinghack/dev-container:220726;
 
 # build VM base image for Virtink VM for ClusterAPI clusters
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/virtink-rootfs:k125-3 -f ./dockerfiles/vm/virkint-rootfs-k1.25/Dockerfile ./dockerfiles/vm/virkint-rootfs-k1.25 --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/virtink-rootfs:k125-3 -f ./dockerfiles/vm/virkint-rootfs-k1.25/Dockerfile ./dockerfiles/vm/virkint-rootfs-k1.25 --push;

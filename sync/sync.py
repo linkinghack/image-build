@@ -4,7 +4,7 @@ import subprocess
 from typing import List
 
 #  command template
-tmpl = """ 
+tmpl = """
 set -xeu
 docker pull --platform=linux/arm64 ${image_repo}/${image_name}
 docker tag  ${image_repo}/${image_name} ${private_repo}/${image_name}-arm64
@@ -31,7 +31,7 @@ def sync_image(img_list: List[str], target_repo: str):
         # sync multi-arch
         script = tmpl.replace("${image_repo}", image_repo)
         script = script.replace("${image_name}", image_name)
-        script = script.replace("${image_repo}", target_repo)
+        script = script.replace("${private_repo}", target_repo)
         tmpSh = open('tmp.sh', 'w')
         tmpSh.write(script)
         tmpSh.close()
