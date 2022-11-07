@@ -8,8 +8,8 @@ FROM ubuntu
 # webproc release settings
 # fetch dnsmasq and webproc binary
 COPY --from=procbuild /code/webproc/webproc /usr/bin/webproc
-RUN apk update \
-	&& apk --no-cache add dnsmasq \
+RUN apt update \
+	&& apt install dnsmasq -y \
 	&& chmod +x /usr/bin/webproc
 #configure dnsmasq
 RUN mkdir -p /etc/default/
