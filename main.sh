@@ -10,7 +10,10 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 
 # build dbg-tool
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.4 -f ./dockerfiles/dbg-tool/Dockerfile ./dockerfiles/dbg-tool --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.4 -f ./dockerfiles/dbg-tool/Dockerfile ./dockerfiles/dbg-tool --push;
+
+# build webproc-dnsmasq
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/webproc-dnsmasq:v1.0 -f ./dockerfiles/dnsmasq/Dockerfile ./dockerfiles/dnsmasq --push;
 
 
 # build enhanced base image
