@@ -22,4 +22,5 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker push linkinghack/dev-container:220726;
 
 # build VM base image for Virtink VM for ClusterAPI clusters
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-3 -f ./dockerfiles/vm/virkint-rootfs-k1.25/Dockerfile ./dockerfiles/vm/virkint-rootfs-k1.25 --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-3 -f ./dockerfiles/vm/vm-rootfs-k1.25/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0 -f ./dockerfiles/vm/vm-rootfs-k1.24.0/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.24.0 --push;
