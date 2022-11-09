@@ -1,8 +1,12 @@
 FROM ubuntu:jammy AS rootfs
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg vim net-tools dnsutils && \
+    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg vim net-tools dnsutils conntrack && \
     rm -rf /var/lib/apt/lists/*
+
+RUN echo "overlay \n\
+br_netfilter" \
+  >> /etc/modules-load.d/k8s.conf
 
 RUN echo "net.bridge.bridge-nf-call-iptables  = 1 \n\
 net.bridge.bridge-nf-call-ip6tables = 1 \n\

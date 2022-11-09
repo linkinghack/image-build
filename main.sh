@@ -13,7 +13,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.4 -f ./dockerfiles/dbg-tool/Dockerfile ./dockerfiles/dbg-tool --push;
 
 # build webproc-dnsmasq
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/webproc-dnsmasq:v1.0 -f ./dockerfiles/dnsmasq/Dockerfile ./dockerfiles/dnsmasq --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/webproc-dnsmasq:v1.0 -f ./dockerfiles/dnsmasq/Dockerfile ./dockerfiles/dnsmasq --push;
 
 
 # build enhanced base image
@@ -22,4 +22,4 @@ docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/webproc-dn
 # docker push linkinghack/dev-container:220726;
 
 # build VM base image for Virtink VM for ClusterAPI clusters
-# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/virtink-rootfs:k125-3 -f ./dockerfiles/vm/virkint-rootfs-k1.25/Dockerfile ./dockerfiles/vm/virkint-rootfs-k1.25 --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-3 -f ./dockerfiles/vm/virkint-rootfs-k1.25/Dockerfile ./dockerfiles/vm/virkint-rootfs-k1.25 --push;
