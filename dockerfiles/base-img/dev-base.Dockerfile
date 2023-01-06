@@ -1,15 +1,16 @@
 FROM mcr.microsoft.com/oryx/build:vso-focal-20220429.1 as kitchensink
 
 ARG USERNAME=devspace
-ARG USER_UID=1100
+ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 ARG HOMEDIR=/home/$USERNAME
 
 # Default to bash shell (other shells available at /usr/bin/fish and /usr/bin/zsh)
-ENV SHELL=/usr/bin/zsh \
+ENV SHELL=/bin/bash \
     ORYX_ENV_TYPE=vsonline-present \
     DOTNET_ROOT="${HOMEDIR}/.dotnet" \
     JAVA_ROOT="${HOMEDIR}/.java" \
+    JAVA_HOME="${JAVA_ROOT}/current" \
     NODE_ROOT="${HOMEDIR}/.nodejs" \
     PHP_ROOT="${HOMEDIR}/.php" \
     PYTHON_ROOT="${HOMEDIR}/.python" \
@@ -34,8 +35,7 @@ ENV PATH="${NVM_DIR}/current/bin:${NPM_GLOBAL}/bin:${PYTHON_ROOT}/current/bin:${
 
 # Install needed utilities and setup non-root user. Use a separate RUN statement to add your own dependencies.
 COPY library-scripts/* setup-user.sh setup-python-tools.sh first-run-notice.txt /tmp/scripts/
-RUN mv /home/codespace /home/devspace \
-    && apt-get update && export DEBIAN_FRONTEND=noninteractive \
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     # Restore man command
     && yes | unminimize 2>&1 \ 
     # Run common script and setup user
@@ -63,10 +63,23 @@ RUN mv /home/codespace /home/devspace \
     && apt-get autoremove -y && apt-get clean -y \
     # Move first run notice to right spot
     && mkdir -p /usr/local/etc/vscode-dev-containers/ \
-    && mv -f /tmp/scripts/first-run-notice.txt /usr/local/etc/vscode-dev-containers/
+    && mv -f /tmp/scripts/first-run-notice.txt /usr/local/etc/vscode-dev-containers/ \
+    && rm -rf /home/codespace
+
+# Remove existing Python installation from the Oryx base image
+RUN rm -rf /opt/python && rm "${PYTHON_ROOT}/current"
 
 # Install Python, JupyterLab, common machine learning packages, and Ruby utilities
-RUN bash /tmp/scripts/python-debian.sh "none" "/opt/python/latest" "${PIPX_HOME}" "${USERNAME}" "true" \
+RUN bash /tmp/scripts/python-debian.sh "3.10.4" "/opt/python/3.10.4" "${PIPX_HOME}" "${USERNAME}" "true" "true" "false" \
+    && bash /tmp/scripts/python-debian.sh "3.9.7" "/opt/python/3.9.7" "${PIPX_HOME}" "${USERNAME}" "false" "false" "false" \
+    # Recreate symbolic link that existed in the Oryx base image
+    && ln -sf /opt/python/3.10.4 "${PYTHON_ROOT}/current" \
+    && ln -sf /opt/python/3.10.4 /opt/python/stable \
+    && ln -sf /opt/python/3.10.4 /opt/python/latest \
+    && ln -sf /opt/python/3.10.4 /opt/python/3 \
+    && ln -sf /opt/python/3.10.4 /opt/python/3.10 \
+    && ln -sf /opt/python/3.9.7 /opt/python/3.9 \
+    && ln -sf /opt/python/3.9.7 /opt/python/3.9.7 \
     # Install JupyterLab and common machine learning packages
     && PYTHON_BINARY="${PYTHON_ROOT}/current/bin/python" \
     && bash /tmp/scripts/jupyterlab-debian.sh "latest" "automatic" ${PYTHON_BINARY} "true" \
@@ -96,8 +109,7 @@ RUN git config --global --add safe.directory "${NVM_DIR}" \
 # Install SDKMAN, OpenJDK8 (JDK 17 already present), gradle (maven already present)
 RUN bash /tmp/scripts/gradle-debian.sh "latest" "${SDKMAN_DIR}" "${USERNAME}" "true" \
     && su ${USERNAME} -c ". ${SDKMAN_DIR}/bin/sdkman-init.sh \
-        && sdk install java 11-opt-java /opt/java/17.0 \
-        && sdk install java lts-opt-java /opt/java/lts"
+        && sdk install java 8.0.345-tem /opt/java/8.0.345"
 
 # Install Go, remove scripts now that we're done with them
 RUN bash /tmp/scripts/go-debian.sh "latest" "${GOROOT}" "${GOPATH}" "${USERNAME}" \
@@ -119,7 +131,3 @@ RUN if [ -z $DeveloperBuild ]; then \
     fi
 
 USER ${USERNAME}
-
-#     👋 Welcome to Codespaces! You are on our default image. 
-#    - It includes runtimes and tools for Python, Node.js, Docker, and more. See the full list here: https://aka.ms/ghcs-default-image
-#    - Want to use a custom image instead? Learn more here: https://aka.ms/configure-codespace

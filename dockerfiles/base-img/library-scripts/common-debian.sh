@@ -102,7 +102,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         libkrb5-3 \
         libgssapi-krb5-2 \
         libicu[0-9][0-9] \
-        liblttng-ust0 \
+        liblttng-ust[0-9] \
         libstdc++6 \
         zlib1g \
         locales \
@@ -112,6 +112,12 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         strace \
         manpages \
         manpages-dev \
+        dnsutils \
+        iputils-ping \
+        iputils-tracepath \
+        telnet \
+        telnet-ssl \
+        tcpd \
         init-system-helpers"
         
     # Needed for adding manpages-posix and manpages-posix-dev which are non-free packages in Debian
@@ -205,7 +211,7 @@ else
     fi
 fi
 
-# Add add sudo support for non-root user
+# Add sudo support for non-root user
 if [ "${USERNAME}" != "root" ] && [ "${EXISTING_NON_ROOT_USER}" != "${USERNAME}" ]; then
     echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME
     chmod 0440 /etc/sudoers.d/$USERNAME

@@ -133,7 +133,7 @@ if [ ! -d "${SDKMAN_DIR}" ]; then
 fi
 
 # Use Microsoft JDK for everything but JDK 8
-jdk_distro="ms"
+jdk_distro="tem"
 if echo "${JAVA_VERSION}" | grep -E '^8([\s\.]|$)' > /dev/null 2>&1; then
     jdk_distro="tem"
 fi
