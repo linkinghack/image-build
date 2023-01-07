@@ -53,7 +53,7 @@ RUN apt-get update \
 # since this intermediate stage is copied to final stage.
 # For example, if we put yarn-cache here it is going to impact perf since it more than 500MB
 FROM main AS intermediate
-COPY --from=mcr.microsoft.com/oryx/build:vso-debian-bullseye /tmp/oryx/ /opt/tmp
+COPY --from=mcr.microsoft.com/oryx/build:vso-debian-bullseye /opt/tmp /opt/tmp
 # COPY --from=oryxdevmcr.azurecr.io/private/oryx/buildscriptgenerator /opt/buildscriptgen/ /opt/buildscriptgen/
  
 FROM main AS final
