@@ -8,6 +8,8 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/go-code-server:go1.18-code4.4.0-v1.3 -f ./dockerfiles/cloud-ide/go.Dockerfile ./dockerfiles/cloud-ide --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/java-code-server:java8-11-18-code4.4.0-v1.3 -f ./dockerfiles/cloud-ide/java.Dockerfile ./dockerfiles/cloud-ide --push;
 
+# build VSO base image
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vso-base:bullseye-230107 ./dockerfiles/vso-base/Dockerfile ./dockerfiles/vso-base --push;
 
 # build dbg-tool
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.4 -f ./dockerfiles/dbg-tool/Dockerfile ./dockerfiles/dbg-tool --push;
@@ -24,7 +26,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # build VM base image for Virtink VM for ClusterAPI clusters
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-4 -f ./dockerfiles/vm/vm-rootfs-k1.25/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0 -f ./dockerfiles/vm/vm-rootfs-k1.24.0/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.24.0 --push;
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-cdi:k125-4 -f ./dockerfiles/vm/cdi.Dockerfile ./dockerfiles/vm --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-cdi:k125-4 -f ./dockerfiles/vm/cdi.Dockerfile ./dockerfiles/vm --push;
 
 # build NicTool image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;
