@@ -77,6 +77,7 @@ COPY --from=intermediate /opt /opt
 # because we want to avoid duplication (which is always error-prone)
 
 RUN set -ex \
+    && chmod -R a+x /opt/tmp \
     && tmpDir="/opt/tmp" \
     && imagesDir="$tmpDir/images" \
     && buildDir="$tmpDir/build" \
