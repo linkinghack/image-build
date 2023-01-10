@@ -16,7 +16,7 @@ source $CURRENT_DIR/../__common.sh
 
 echo
 # echo "Installing .NET Core SDK $DOTNET_SDK_VER from $sdkStorageAccountUrl ..."
-ehco "Installing .NET Core SDK with package manager"
+echo "Installing .NET Core SDK with package manager"
 echo
 
 debianFlavor="$DEBIAN_FLAVOR"
