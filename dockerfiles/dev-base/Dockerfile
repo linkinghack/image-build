@@ -40,17 +40,16 @@ RUN apt-get update \
         sqlite3 \
         libsqlite3-dev \
         software-properties-common \
-    && rm -rf /var/lib/apt/lists/* \
     # This is the folder containing 'links' to benv and build script generator
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends python2 \
-    && rm -rf /var/lib/apt/lists/* \
     && pip3 install pip --upgrade \
     && apt-get install -y --no-install-recommends \
         libargon2-0 \
         libonig-dev \
-    &&  apt-get install jekyll -y --no-install-recommends
+    &&  apt-get install jekyll -y --no-install-recommends \
+    && && rm -rf /var/lib/apt/lists/*
 
 # NOTE: Place only folders whose size does not extrememly effect the perf of building this image
 # since this intermediate stage is copied to final stage.
