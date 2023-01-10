@@ -34,11 +34,11 @@ wget $DOWNLOAD_URL
 
 mkdir -p /opt/nodejs
 tar xf ./$FILE_NAME -C /opt/nodejs
-ln /opt/nodejs/$DIR_NAME /opt/nodejs/$MAJOR_VERSION
+ln -s /opt/nodejs/$DIR_NAME /opt/nodejs/$MAJOR_VERSION
 
 if [ "$LINK_AS_LATEST" = "true" ]; then
   TARGET_HOME="/home/$USER_NAME"
   mkdir -p $TARGET_HOME/nodejs
-  ln /opt/nodejs/$DIR_NAME $TARGET_HOME/nodejs/current
-  ln /opt/nodejs/lts /opt/nodejs/$MAJOR_VERSION
+  ln -s /opt/nodejs/$DIR_NAME $TARGET_HOME/nodejs/current
+  ln -s /opt/nodejs/lts /opt/nodejs/$MAJOR_VERSION
 fi
