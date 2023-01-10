@@ -73,13 +73,13 @@ RUN rm -rf /opt/python && rm "${PYTHON_ROOT}/current"
 RUN bash /tmp/scripts/python-debian.sh "3.10.4" "/opt/python/3.10.4" "${PIPX_HOME}" "${USERNAME}" "true" "true" "false" \
     && bash /tmp/scripts/python-debian.sh "3.9.7" "/opt/python/3.9.7" "${PIPX_HOME}" "${USERNAME}" "false" "false" "false" \
     # Recreate symbolic link that existed in the Oryx base image
-    && ln -sf /opt/python/3.10.4 "${PYTHON_ROOT}/current" \
-    && ln -sf /opt/python/3.10.4 /opt/python/stable \
-    && ln -sf /opt/python/3.10.4 /opt/python/latest \
-    && ln -sf /opt/python/3.10.4 /opt/python/3 \
-    && ln -sf /opt/python/3.10.4 /opt/python/3.10 \
-    && ln -sf /opt/python/3.9.7 /opt/python/3.9 \
-    && ln -sf /opt/python/3.9.7 /opt/python/3.9.7 \
+    # && ln -sf /opt/python/3.10.4 "${PYTHON_ROOT}/current" \
+    # && ln -sf /opt/python/3.10.4 /opt/python/stable \
+    # && ln -sf /opt/python/3.10.4 /opt/python/latest \
+    # && ln -sf /opt/python/3.10.4 /opt/python/3 \
+    # && ln -sf /opt/python/3.10.4 /opt/python/3.10 \
+    # && ln -sf /opt/python/3.9.7 /opt/python/3.9 \
+    # && ln -sf /opt/python/3.9.7 /opt/python/3.9.7 \
     # Install JupyterLab and common machine learning packages
     && PYTHON_BINARY="${PYTHON_ROOT}/current/bin/python" \
     && bash /tmp/scripts/jupyterlab-debian.sh "latest" "automatic" ${PYTHON_BINARY} "true" \

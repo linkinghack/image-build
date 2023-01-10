@@ -1,4 +1,4 @@
-FROM buildpack-deps:bullseye AS main
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye AS main
 
 # Install basic build tools
 # Configure locale (required for Python)
@@ -53,16 +53,18 @@ RUN apt-get update \
 # since this intermediate stage is copied to final stage.
 # For example, if we put yarn-cache here it is going to impact perf since it more than 500MB
 FROM main AS intermediate
-COPY --from=mcr.microsoft.com/oryx/build:vso-debian-bullseye /opt/tmp /opt/tmp
-# COPY --from=oryxdevmcr.azurecr.io/private/oryx/buildscriptgenerator /opt/buildscriptgen/ /opt/buildscriptgen/
+COPY --from=oryxdevmcr.azurecr.io/private/oryx/support-files-image-for-build /tmp/oryx/ /opt/tmp
+COPY --from=oryxdevmcr.azurecr.io/private/oryx/buildscriptgenerator /opt/buildscriptgen/ /opt/buildscriptgen/
  
 FROM main AS final
+ARG AI_KEY
+ARG SDK_STORAGE_BASE_URL_VALUE
 
 # add an environment variable to determine debian_flavor
 # to correctly download platform sdk during platform installation
 ENV DEBIAN_FLAVOR="bullseye"
 # Set sdk storage base url
-ENV ORYX_SDK_STORAGE_BASE_URL="https://oryx-cdn.microsoft.io"
+ENV ORYX_SDK_STORAGE_BASE_URL="${SDK_STORAGE_BASE_URL_VALUE}"
 
 COPY --from=intermediate /opt /opt
 
@@ -183,6 +185,7 @@ RUN set -ex \
     && cp -f $imagesDir/build/logger.sh /opt/oryx/logger \
     && mkdir -p /usr/local/share/pip-cache/lib \
     && chmod -R 777 /usr/local/share/pip-cache \
+    && ln -s /opt/buildscriptgen/GenerateBuildScript /opt/oryx/oryx \
     && rm -f /etc/apt/sources.list.d/buster.list
 
 ENV ORYX_PATHS="/opt/oryx:/opt/nodejs/lts/bin:/opt/dotnet/lts:/opt/python/latest/bin:/opt/php/lts/bin:/opt/php-composer:/opt/yarn/stable/bin:/opt/hugo/lts::/opt/java/lts/bin:/opt/maven/lts/bin:/opt/ruby/lts/bin"
@@ -278,6 +281,7 @@ ENV NUGET_XMLDOC_MODE="skip" \
     ORYX_SDK_STORAGE_BASE_URL="${SDK_STORAGE_BASE_URL_VALUE}" \
     ENABLE_DYNAMIC_INSTALL="true" \
     ORYX_PREFER_USER_INSTALLED_SDKS=true \
+    ORYX_AI_INSTRUMENTATION_KEY=${AI_KEY} \
     PYTHONIOENCODING="UTF-8" \
     LANG="C.UTF-8" \
     LANGUAGE="C.UTF-8" \
