@@ -7,6 +7,7 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         git \
+        apt-utils \
         make \
         unzip \
         # The tools in this package are used when installing packages for Python
@@ -97,9 +98,9 @@ RUN set -ex \
     && rm -rf /var/lib/apt/lists/* \
     # Install Node
     && . $buildDir/__nodeVersions.sh \
-    && $imagesDir/installNode.sh $NODE14_VERSION \
-    && $imagesDir/installNode.sh $NODE16_VERSION \
-    && $imagesDir/installNode.sh $NODE19_VERSION \
+    && $imagesDir/installNode.sh 14 $NODE14_VERSION false devspace \
+    && $imagesDir/installNode.sh 16 $NODE16_VERSION false devspace \
+    && $imagesDir/installNode.sh 19 $NODE19_VERSION true  devspace \
     && $imagesDir/receiveGpgKeys.sh 6A010C5166006599AA17F08146C2130DFD2497F5 \
     # Install Python SDKs
     # Upgrade system python
