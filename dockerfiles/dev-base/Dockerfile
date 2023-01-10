@@ -49,7 +49,7 @@ RUN apt-get update \
         libargon2-0 \
         libonig-dev \
     &&  apt-get install jekyll -y --no-install-recommends \
-    && && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # NOTE: Place only folders whose size does not extrememly effect the perf of building this image
 # since this intermediate stage is copied to final stage.
