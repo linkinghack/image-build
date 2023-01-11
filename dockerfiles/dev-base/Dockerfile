@@ -8,6 +8,8 @@ RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         git \
         apt-utils \
+        vim \
+        nano \
         make \
         unzip \
         # The tools in this package are used when installing packages for Python
@@ -110,6 +112,7 @@ RUN set -ex \
     && rm -f /etc/apt/sources.list.d/buster.list
 
 # ENV ORYX_PATHS="/opt/oryx:/opt/nodejs/lts/bin:/opt/dotnet/lts:/opt/python/latest/bin:/opt/php/lts/bin:/opt/php-composer:/opt/yarn/stable/bin:/opt/hugo/lts::/opt/java/lts/bin:/opt/maven/lts/bin:/opt/ruby/lts/bin"
+ENV SDK_PATHS="/opt/nodejs/lts/bin"
 
 ENV  DYNAMIC_INSTALL_ROOT_DIR="/opt"
 
@@ -131,6 +134,7 @@ ENV NUGET_XMLDOC_MODE="skip" \
     PYTHONIOENCODING="UTF-8" \
     LANG="C.UTF-8" \
     LANGUAGE="C.UTF-8" \
-    LC_ALL="C.UTF-8"
+    LC_ALL="C.UTF-8" \
+    PATH="$PATH:$SDK_PATHS"
 
-ENTRYPOINT [ "benv" ]
+# ENTRYPOINT [ "benv" ]
