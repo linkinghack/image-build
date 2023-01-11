@@ -9,7 +9,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/java-code-server:java8-11-18-code4.4.0-v1.3 -f ./dockerfiles/cloud-ide/java.Dockerfile ./dockerfiles/cloud-ide --push;
 
 # build VSO base image
-# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dev-base:bullseye-230107 -f ./dockerfiles/dev-base/Dockerfile ./dockerfiles/dev-base --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dev-base:bullseye-230111 -f ./dockerfiles/dev-base/Dockerfile ./dockerfiles/dev-base --push;
 
 # build IDE Base image
 docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/ide-base:full-230111 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img --push;

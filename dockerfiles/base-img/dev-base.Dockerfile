@@ -1,4 +1,4 @@
-FROM linkinghack/dev-base:bullseye-230107 as kitchensink
+FROM linkinghack/dev-base:bullseye-230111 as kitchensink
 
 ARG USERNAME=devspace
 ARG USER_UID=1000
@@ -36,7 +36,8 @@ ENV PATH="${PATH}:${NVM_DIR}/current/bin:${NPM_GLOBAL}/bin:${PYTHON_ROOT}/curren
 COPY library-scripts/* setup-user.sh setup-python-tools.sh first-run-notice.txt /tmp/scripts/
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     # Restore man command
-    && yes | unminimize 2>&1 \ 
+    && apt install -y man-db \
+    # && yes | unminimize 2>&1 \ 
     # Run common script and setup user
     && bash /tmp/scripts/common-debian.sh "true" "${USERNAME}" "${USER_UID}" "${USER_GID}" "true" "true" "true" \
     && bash /tmp/scripts/setup-user.sh "${USERNAME}" "${PATH}" \
