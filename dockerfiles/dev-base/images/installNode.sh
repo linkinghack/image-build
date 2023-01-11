@@ -30,16 +30,16 @@ DIR_NAME="node-$NODE_VERSION-linux-$TARGET_PLATFORM"
 FILE_NAME="$DIR_NAME.tar.gz"
 
 ## Download node binaries and install
-# wget $DOWNLOAD_URL
+wget $DOWNLOAD_URL
 
-# mkdir -p /opt/nodejs
-# tar xf ./$FILE_NAME -C /opt/nodejs
-# ln -s /opt/nodejs/$DIR_NAME /opt/nodejs/$MAJOR_VERSION
+mkdir -p /opt/nodejs
+tar xf ./$FILE_NAME -C /opt/nodejs
+ln -s /opt/nodejs/$DIR_NAME /opt/nodejs/$MAJOR_VERSION
 
 if [ "$LINK_AS_LATEST" = "true" ]; then
   echo "link as: $LINK_AS_LATEST"
   TARGET_HOME="/home/$USER_NAME"
-  mkdir -p $TARGET_HOME/.nodejs
-  ln -s /opt/nodejs/$DIR_NAME $TARGET_HOME/.nodejs/current
+  mkdir -p $TARGET_HOME/.nodejs;
+  ln -s /opt/nodejs/$DIR_NAME $TARGET_HOME/.nodejs/current;
   ln -s /opt/nodejs/$DIR_NAME /opt/nodejs/lts
 fi
