@@ -291,8 +291,8 @@ if [ "${PYTHON_VERSION}" != "none" ]; then
         check_packages python3 python3-doc python3-pip python3-venv python3-dev python3-tk
         PYTHON_INSTALL_PATH="/usr"
         should_install_from_source=false
-    elif [ "$(dpkg --print-architecture)" = "amd64" ] && [ "${USE_ORYX_IF_AVAILABLE}" = "true" ] && type oryx > /dev/null 2>&1; then
-        install_using_oryx || should_install_from_source=true
+    # elif [ "$(dpkg --print-architecture)" = "amd64" ] && [ "${USE_ORYX_IF_AVAILABLE}" = "true" ] && type oryx > /dev/null 2>&1; then
+    #     install_using_oryx || should_install_from_source=true
     else
         should_install_from_source=true
     fi

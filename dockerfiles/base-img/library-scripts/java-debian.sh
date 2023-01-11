@@ -14,7 +14,7 @@ export SDKMAN_DIR=${2:-"/usr/local/sdkman"}
 USERNAME=${3:-"automatic"}
 UPDATE_RC=${4:-"true"}
 
-set -e
+set -ex
 
 if [ "$(id -u)" -ne 0 ]; then
     echo -e 'Script must be run as root. Use sudo, su, or add "USER root" to your Dockerfile before running this script.'
