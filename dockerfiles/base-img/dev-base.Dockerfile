@@ -62,11 +62,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get autoremove -y && apt-get clean -y \
     # Move first run notice to right spot
     && mkdir -p /usr/local/etc/vscode-dev-containers/ \
-    && mv -f /tmp/scripts/first-run-notice.txt /usr/local/etc/vscode-dev-containers/ \
-    && rm -rf /home/codespace
-
-# Remove existing Python installation from the Oryx base image
-RUN rm -rf /opt/python && rm "${PYTHON_ROOT}/current"
+    && mv -f /tmp/scripts/first-run-notice.txt /usr/local/etc/vscode-dev-containers/
 
 # Install dotnet SDKs
 RUN bash/tmp/scripts/dotnet-debian.sh
