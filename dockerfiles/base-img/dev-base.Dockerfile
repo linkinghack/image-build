@@ -87,8 +87,6 @@ RUN bash /tmp/scripts/python-debian.sh "3.11.1" "/opt/python/3.11.1" "${PIPX_HOM
     # Install rvm, rbenv, any missing base gems
     && chown -R ${USERNAME} /opt/ruby/* \
     && bash /tmp/scripts/ruby-debian.sh "none" "${USERNAME}" "true" "true" \
-    # Link composer
-    && ln -s $(which composer.phar) /usr/local/bin/composer \
     && apt-get clean -y
 
 # Setup Node.js, install NVM and NVS
