@@ -101,7 +101,7 @@ export DEBIAN_FRONTEND=noninteractive
 . /etc/os-release
 
 # If the os provided version is "good enough", just install that.
-if [ ${GIT_VERSION} = "os-provided" ] || [ ${GIT_VERSION} = "system" ]; then
+if true || [ ${GIT_VERSION} = "os-provided" ] || [ ${GIT_VERSION} = "system" ]; then
     if type git > /dev/null 2>&1; then
       echo "Detected existing system install: $(git version)"
       exit 0
@@ -113,25 +113,17 @@ if [ ${GIT_VERSION} = "os-provided" ] || [ ${GIT_VERSION} = "system" ]; then
 fi
 
 # If ubuntu, PPAs allowed, and latest - install from there
-if true || ([ "${GIT_VERSION}" = "latest" ] || [ "${GIT_VERSION}" = "lts" ] || [ "${GIT_VERSION}" = "current" ]) && [ "${ID}" = "ubuntu" ] && [ "${USE_PPA_IF_AVAILABLE}" = "true" ]; then
-    echo "Using PPA to install latest git..."
-    check_packages apt-transport-https curl ca-certificates gnupg2 dirmngr
-    receive_gpg_keys GIT_CORE_PPA_ARCHIVE_GPG_KEY /usr/share/keyrings/gitcoreppa-archive-keyring.gpg
-    echo -e "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main\ndeb-src [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/git-core-ppa.list
-    apt-get update
-    apt-get -y install --no-install-recommends git 
-    rm -rf "/tmp/tmp-gnupg"
-    exit 0
-fi
+# if true || ([ "${GIT_VERSION}" = "latest" ] || [ "${GIT_VERSION}" = "lts" ] || [ "${GIT_VERSION}" = "current" ]) && [ "${ID}" = "ubuntu" ] && [ "${USE_PPA_IF_AVAILABLE}" = "true" ]; then
+#     echo "Using PPA to install latest git..."
+#     check_packages apt-transport-https curl ca-certificates gnupg2 dirmngr
+#     receive_gpg_keys GIT_CORE_PPA_ARCHIVE_GPG_KEY /usr/share/keyrings/gitcoreppa-archive-keyring.gpg
+#     echo -e "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main\ndeb-src [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/git-core-ppa.list
+#     apt-get update
+#     apt-get -y install --no-install-recommends git 
+#     rm -rf "/tmp/tmp-gnupg"
+#     exit 0
+# fi
 
-echo "Using PPA to install latest git..."
-check_packages apt-transport-https curl ca-certificates gnupg2 dirmngr
-receive_gpg_keys GIT_CORE_PPA_ARCHIVE_GPG_KEY /usr/share/keyrings/gitcoreppa-archive-keyring.gpg
-echo -e "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main\ndeb-src [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/git-core-ppa.list
-apt-get update
-apt-get -y install --no-install-recommends git 
-rm -rf "/tmp/tmp-gnupg"
-exit 0
 
 # # Install required packages to build if missing
 # check_packages build-essential curl ca-certificates tar gettext libssl-dev zlib1g-dev libcurl?-openssl-dev libexpat1-dev
