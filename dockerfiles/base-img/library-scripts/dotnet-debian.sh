@@ -45,7 +45,7 @@ apt-get install -y dotnet-sdk-7.0;
 
 SDK_DIR=/opt/dotnet
 DOTNET_SDK_VER=$(dotnet --version)
-# DOTNET_DIR=$SDK_DIR/$DOTNET_SDK_VER
+DOTNET_DIR=$SDK_DIR/$DOTNET_SDK_VER
 mkdir -p $DOTNET_DIR
 # tar -xzf $fileName -C $DOTNET_DIR
 # rm $fileName
