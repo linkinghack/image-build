@@ -85,7 +85,6 @@ RUN bash /tmp/scripts/python-debian.sh "3.11.1" "/opt/python/3.11.1" "${PIPX_HOM
     && bash /tmp/scripts/jupyterlab-debian.sh "latest" "automatic" ${PYTHON_BINARY} "true" \
     && bash /tmp/scripts/setup-python-tools.sh ${PYTHON_BINARY} \
     # Install rvm, rbenv, any missing base gems
-    && chown -R ${USERNAME} /opt/ruby/* \
     && bash /tmp/scripts/ruby-debian.sh "none" "${USERNAME}" "true" "true" \
     && apt-get clean -y
 
