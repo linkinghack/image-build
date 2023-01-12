@@ -124,30 +124,39 @@ if true || ([ "${GIT_VERSION}" = "latest" ] || [ "${GIT_VERSION}" = "lts" ] || [
     exit 0
 fi
 
-# Install required packages to build if missing
-check_packages build-essential curl ca-certificates tar gettext libssl-dev zlib1g-dev libcurl?-openssl-dev libexpat1-dev
+echo "Using PPA to install latest git..."
+check_packages apt-transport-https curl ca-certificates gnupg2 dirmngr
+receive_gpg_keys GIT_CORE_PPA_ARCHIVE_GPG_KEY /usr/share/keyrings/gitcoreppa-archive-keyring.gpg
+echo -e "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main\ndeb-src [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/gitcoreppa-archive-keyring.gpg] http://ppa.launchpad.net/git-core/ppa/ubuntu ${VERSION_CODENAME} main" > /etc/apt/sources.list.d/git-core-ppa.list
+apt-get update
+apt-get -y install --no-install-recommends git 
+rm -rf "/tmp/tmp-gnupg"
+exit 0
 
-# Partial version matching
-if [ "$(echo "${GIT_VERSION}" | grep -o '\.' | wc -l)" != "2" ]; then
-    requested_version="${GIT_VERSION}"
-    version_list="$(curl -sSL -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/git/git/tags" | grep -oP '"name":\s*"v\K[0-9]+\.[0-9]+\.[0-9]+"' | tr -d '"' | sort -rV )"
-    if [ "${requested_version}" = "latest" ] || [ "${requested_version}" = "lts" ] || [ "${requested_version}" = "current" ]; then
-        GIT_VERSION="$(echo "${version_list}" | head -n 1)"
-    else
-        set +e
-        GIT_VERSION="$(echo "${version_list}" | grep -E -m 1 "^${requested_version//./\\.}([\\.\\s]|$)")"
-        set -e
-    fi
-    if [ -z "${GIT_VERSION}" ] || ! echo "${version_list}" | grep "^${GIT_VERSION//./\\.}$" > /dev/null 2>&1; then
-        echo "Invalid git version: ${requested_version}" >&2
-        exit 1
-    fi
-fi
+# # Install required packages to build if missing
+# check_packages build-essential curl ca-certificates tar gettext libssl-dev zlib1g-dev libcurl?-openssl-dev libexpat1-dev
 
-echo "Downloading source for ${GIT_VERSION}..."
-curl -sL https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz | tar -xzC /tmp 2>&1
-echo "Building..."
-cd /tmp/git-${GIT_VERSION}
-make -s prefix=/usr/local all && make -s prefix=/usr/local install 2>&1
-rm -rf /tmp/git-${GIT_VERSION}
-echo "Done!"
+# # Partial version matching
+# if [ "$(echo "${GIT_VERSION}" | grep -o '\.' | wc -l)" != "2" ]; then
+#     requested_version="${GIT_VERSION}"
+#     version_list="$(curl -sSL -H "Accept: application/vnd.github.v3+json" "https://api.github.com/repos/git/git/tags" | grep -oP '"name":\s*"v\K[0-9]+\.[0-9]+\.[0-9]+"' | tr -d '"' | sort -rV )"
+#     if [ "${requested_version}" = "latest" ] || [ "${requested_version}" = "lts" ] || [ "${requested_version}" = "current" ]; then
+#         GIT_VERSION="$(echo "${version_list}" | head -n 1)"
+#     else
+#         set +e
+#         GIT_VERSION="$(echo "${version_list}" | grep -E -m 1 "^${requested_version//./\\.}([\\.\\s]|$)")"
+#         set -e
+#     fi
+#     if [ -z "${GIT_VERSION}" ] || ! echo "${version_list}" | grep "^${GIT_VERSION//./\\.}$" > /dev/null 2>&1; then
+#         echo "Invalid git version: ${requested_version}" >&2
+#         exit 1
+#     fi
+# fi
+
+# echo "Downloading source for ${GIT_VERSION}..."
+# curl -sL https://github.com/git/git/archive/v${GIT_VERSION}.tar.gz | tar -xzC /tmp 2>&1
+# echo "Building..."
+# cd /tmp/git-${GIT_VERSION}
+# make -s prefix=/usr/local all && make -s prefix=/usr/local install 2>&1
+# rm -rf /tmp/git-${GIT_VERSION}
+# echo "Done!"
