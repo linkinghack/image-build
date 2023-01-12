@@ -30,10 +30,10 @@ sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
 ## Install Dotnet Core SDK 7.0
-apt-get update && \
-apt-get install -y wget \
-apt-get install -y dotnet-sdk-3.1 \
-apt-get install -y dotnet-sdk-7.0
+apt-get update;
+apt-get install -y wget;
+apt-get install -y dotnet-sdk-3.1;
+apt-get install -y dotnet-sdk-7.0;
 
 # downloadFileAndVerifyChecksum dotnet $DOTNET_SDK_VER $fileName $sdkStorageAccountUrl
 
