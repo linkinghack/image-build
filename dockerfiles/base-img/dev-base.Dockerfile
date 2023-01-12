@@ -65,7 +65,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && mv -f /tmp/scripts/first-run-notice.txt /usr/local/etc/vscode-dev-containers/
 
 # Install dotnet SDKs
-RUN bash/tmp/scripts/dotnet-debian.sh
+RUN bash /tmp/scripts/dotnet-debian.sh
 
 # Install Python, JupyterLab, common machine learning packages, and Ruby utilities
 RUN bash /tmp/scripts/python-debian.sh "3.11.1" "/opt/python/3.11.1" "${PIPX_HOME}" "${USERNAME}" "true" "true" "false" \
