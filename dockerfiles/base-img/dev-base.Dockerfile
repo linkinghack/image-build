@@ -85,7 +85,7 @@ RUN bash /tmp/scripts/dotnet-debian.sh "7.0" ${USERNAME} "true"
 # RUN PYTHON_BINARY="${PYTHON_ROOT}/current/bin/python" \
 RUN PYTHON_BINARY="python3" \
     && bash /tmp/scripts/jupyterlab-debian.sh "latest" "automatic" ${PYTHON_BINARY} "true" \
-    && bash /tmp/scripts/setup-python-tools.sh \
+    && bash /tmp/scripts/setup-python-tools.sh "python3" ${USERNAME} \
     # Install rvm, rbenv, any missing base gems
     # && bash /tmp/scripts/ruby-debian.sh "none" "${USERNAME}" "true" "true" \
     && apt-get clean -y
