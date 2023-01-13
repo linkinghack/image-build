@@ -20,11 +20,12 @@ installPythonPackage() {
 
   # pip skips installation if the package is already installed
   echo "Installing $PACKAGE..."
-  if [ "${VERSION}" = "latest" ]; then
-    sudoUserIf ${PYTHON} -m pip install ${PACKAGE} --no-cache-dir
-  else
-    sudoUserIf ${PYTHON} -m pip install ${PACKAGE}=="${VERSION}" --no-cache-dir
-  fi
+  # if [ "${VERSION}" = "latest" ]; then
+  #   sudoUserIf ${PYTHON} -m pip install ${PACKAGE} --no-cache-dir
+  # else
+  #   sudoUserIf ${PYTHON} -m pip install ${PACKAGE}=="${VERSION}" --no-cache-dir
+  # fi
+  sudoUserIf ${PYTHON} -m pip install ${PACKAGE} 
 }
 
 # If in automatic mode, determine if a user already exists, if not use vscode
@@ -59,6 +60,8 @@ installPythonPackage "matplotlib" "latest"
 installPythonPackage "seaborn" "latest"
 installPythonPackage "scikit-learn" "latest"
 # installPythonPackage "tensorflow"
+sudoUserIf ${PYTHON} -m pip install tensowflow
+sudoUserIf ${PYTHON} -m pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 installPythonPackage "keras" "latest"
 installPythonPackage "torch" "latest"
 installPythonPackage "requests" "latest"

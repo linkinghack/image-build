@@ -68,22 +68,24 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
 RUN bash /tmp/scripts/dotnet-debian.sh "7.0" ${USERNAME} "true"
 
 # Install Python, JupyterLab, common machine learning packages, and Ruby utilities
-RUN bash /tmp/scripts/python-debian.sh "3.11.1" "/opt/python/3.11.1" "${PIPX_HOME}" "${USERNAME}" "true" "true" "false" \
-    && bash /tmp/scripts/python-debian.sh "3.10.4" "/opt/python/3.10.4" "${PIPX_HOME}" "${USERNAME}" "false" "false" "false" \
-    && bash /tmp/scripts/python-debian.sh "3.9.7" "/opt/python/3.9.7" "${PIPX_HOME}" "${USERNAME}" "false" "false" "false" \
-    # Recreate symbolic link that existed in the Oryx base image
-    && ln -sf /opt/python/3.11.1 "${PYTHON_ROOT}/current" \
-    && ln -sf /opt/python/3.11.1 /opt/python/stable \
-    && ln -sf /opt/python/3.11.1 /opt/python/latest \
-    && ln -sf /opt/python/3.11.1 /opt/python/3 \
-    && ln -sf /opt/python/3.11.1 /opt/python/3.11 \
-    && ln -sf /opt/python/3.10.4 /opt/python/3.10 \
-    && ln -sf /opt/python/3.9.7 /opt/python/3.9 \
-    && ln -sf /opt/python/3.9.7 /opt/python/3.9.7 \
-    # Install JupyterLab and common machine learning packages
-    && PYTHON_BINARY="${PYTHON_ROOT}/current/bin/python" \
+# RUN bash /tmp/scripts/python-debian.sh "3.11.1" "/opt/python/3.11.1" "${PIPX_HOME}" "${USERNAME}" "true" "true" "false" \
+#     && bash /tmp/scripts/python-debian.sh "3.10.4" "/opt/python/3.10.4" "${PIPX_HOME}" "${USERNAME}" "false" "false" "false" \
+#     && bash /tmp/scripts/python-debian.sh "3.9.7" "/opt/python/3.9.7" "${PIPX_HOME}" "${USERNAME}" "false" "false" "false" \
+#     # Recreate symbolic link that existed in the Oryx base image
+#     && ln -sf /opt/python/3.11.1 "${PYTHON_ROOT}/current" \
+#     && ln -sf /opt/python/3.11.1 /opt/python/stable \
+#     && ln -sf /opt/python/3.11.1 /opt/python/latest \
+#     && ln -sf /opt/python/3.11.1 /opt/python/3 \
+#     && ln -sf /opt/python/3.11.1 /opt/python/3.11 \
+#     && ln -sf /opt/python/3.10.4 /opt/python/3.10 \
+#     && ln -sf /opt/python/3.9.7 /opt/python/3.9 \
+#     && ln -sf /opt/python/3.9.7 /opt/python/3.9.7 \
+
+ # Install JupyterLab and common machine learning packages
+# RUN PYTHON_BINARY="${PYTHON_ROOT}/current/bin/python" \
+RUN PYTHON_BINARY="python3" \
     && bash /tmp/scripts/jupyterlab-debian.sh "latest" "automatic" ${PYTHON_BINARY} "true" \
-    && bash /tmp/scripts/setup-python-tools.sh ${PYTHON_BINARY} \
+    && bash /tmp/scripts/setup-python-tools.sh \
     # Install rvm, rbenv, any missing base gems
     # && bash /tmp/scripts/ruby-debian.sh "none" "${USERNAME}" "true" "true" \
     && apt-get clean -y
