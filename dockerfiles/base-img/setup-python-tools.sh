@@ -60,7 +60,7 @@ installPythonPackage "matplotlib" "latest"
 installPythonPackage "seaborn" "latest"
 installPythonPackage "scikit-learn" "latest"
 # installPythonPackage "tensorflow"
-sudoUserIf ${PYTHON} -m pip install tensowflow
+sudoUserIf ${PYTHON} -m pip install tensorflow
 sudoUserIf ${PYTHON} -m pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
 installPythonPackage "keras" "latest"
 installPythonPackage "torch" "latest"
