@@ -6,6 +6,10 @@ echo
 echo "Installing .NET Core SDK with package manager"
 echo
 
+CHANNEL=${1:-7.0}
+USERNAME=${2:-devspace}
+AS_DEFAULT=${3:-false}
+
 debianFlavor="$DEBIAN_FLAVOR"
 
 fileName="dotnet.tar.gz"
@@ -29,11 +33,15 @@ fi
 sudo dpkg -i packages-microsoft-prod.deb
 rm packages-microsoft-prod.deb
 
+## Install dependencies
+sudo apt-get update
+sudo apt install -y libicu-dev wget
+
 ## Install Dotnet Core SDK 7.0
-apt-get update;
-apt-get install -y wget;
-# apt-get install -y dotnet-sdk-3.1;
-apt-get install -y dotnet-sdk-7.0;
+# apt-get update;
+# apt-get install -y wget;
+# # apt-get install -y dotnet-sdk-3.1;
+# apt-get install -y dotnet-sdk-7.0;
 
 # downloadFileAndVerifyChecksum dotnet $DOTNET_SDK_VER $fileName $sdkStorageAccountUrl
 
@@ -44,14 +52,29 @@ apt-get install -y dotnet-sdk-7.0;
 # DOTNET_SDK_VER=${DOTNET_SDK_VER%%-*}
 
 SDK_DIR=/opt/dotnet
-DOTNET_SDK_VER=$(dotnet --version)
+# DOTNET_SDK_VER=$(dotnet --version)
+DOTNET_SDK_VER=$CHANNEL
 DOTNET_DIR=$SDK_DIR/$DOTNET_SDK_VER
 mkdir -p $DOTNET_DIR
 # tar -xzf $fileName -C $DOTNET_DIR
 # rm $fileName
 
-# declare -x dotnet=$SDK_DIR/$DOTNET_SDK_VER/dotnet
-# export dotnet
+## download and install
+wget https://dot.net/v1/dotnet-install.sh
+chmod a+x ./dotnet-install.sh
+./dotnet-install.sh --channel $CHANNEL --install-dir $DOTNET_DIR
+
+## link default dir
+mkdir -p /home/$USERNAME/.dotnet
+ln -s $SDK_DIR/$DOTNET_SDK_VER /home/$USERNAME/.dotnet/$DOTNET_SDK_VER
+
+if [ $AS_DEFAULT = 'true' ]; then
+    ln -s $SDK_DIR/$DOTNET_SDK_VER /home/$USERNAME/.dotnet/current
+    ln -s $SDK_DIR/$DOTNET_SDK_VER $SDK_DIR/current
+    ln -s $SDK_DIR/$DOTNET_SDK_VER $SDK_DIR/lts
+fi
+declare -x dotnet=$SDK_DIR/$DOTNET_SDK_VER/dotnet
+export dotnet
 
 # Install MVC template based packages
 if [ "$INSTALL_PACKAGES" == "true" ]
