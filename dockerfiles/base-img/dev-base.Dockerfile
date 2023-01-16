@@ -1,4 +1,4 @@
-FROM linkinghack/dev-base:bullseye-230111 as kitchensink
+FROM linkinghack/dev-base:bullseye-230116 as kitchensink
 
 ARG USERNAME=devspace
 ARG USER_UID=1000

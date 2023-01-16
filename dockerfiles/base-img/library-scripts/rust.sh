@@ -42,7 +42,7 @@ updaterc() {
 }
 
 # Download and install
-sudo -u ${USERNAME} curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y -v --profile complete
+sudo -u ${USERNAME} curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sudo -u ${USERNAME} sh -s -- -y -v --profile complete
 
 # Update rc setting
 updaterc "$(cat << EOF
