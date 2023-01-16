@@ -34,6 +34,7 @@ wget $DOWNLOAD_URL
 
 mkdir -p /opt/nodejs
 tar xf ./$FILE_NAME -C /opt/nodejs
+rm ./$FILE_NAME
 ln -s /opt/nodejs/$DIR_NAME /opt/nodejs/$MAJOR_VERSION
 
 if [ "$LINK_AS_LATEST" = "true" ]; then
