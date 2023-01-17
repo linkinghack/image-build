@@ -9,5 +9,11 @@ ENV PATH="${PATH}:/home/devspace/.dotnet/current"
 
 VOLUME [ "/ide", "/usr/local/code-server/.vscode" ]
 USER devspace
-CMD [ "/usr/local/code-server/bin/code-server", "--bind-addr", "0.0.0.0:8443", "--user-data-dir", "/ide/userdata", "--extensions-dir", "/ide/extensions", "--disable-telemetry", "--auth",  "none"]
+CMD [ "/usr/local/code-server/bin/code-server", \
+    "--bind-addr", "0.0.0.0:8443", \
+    "--user-data-dir", "/ide/userdata", \
+    "--extensions-dir", "/ide/extensions", \
+    "--auth",  "none", \
+    "--disable-telemetry", \
+    "--disable-getting-started-override" ]
 EXPOSE 8443
