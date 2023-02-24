@@ -1,4 +1,4 @@
-FROM ghcr.io/linuxserver/code-server:4.9.1-ls146 as coderserver
+FROM ghcr.io/linuxserver/code-server:4.10.0 as coderserver
 
 FROM linkinghack/ide-base:full-230116
 

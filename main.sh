@@ -15,7 +15,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/ide-base:full-230116 -f ./dockerfiles/base-img/dev-base.Dockerfile ./dockerfiles/base-img --push;
 
 # build IDE full-featured image
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/cloud-ide:full-230116 -f ./dockerfiles/cloud-ide/all.Dockerfile ./dockerfiles/cloud-ide --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/cloud-ide:full-230224 -f ./dockerfiles/cloud-ide/all.Dockerfile ./dockerfiles/cloud-ide --push;
 
 # build dbg-tool
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dbg-tool:v1.4 -f ./dockerfiles/dbg-tool/Dockerfile ./dockerfiles/dbg-tool --push;
