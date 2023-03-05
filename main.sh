@@ -38,4 +38,4 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;
 
 # build bind9-webmin
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/bin9-webmin:230305 -f ./dockerfiles/bind9-webmin/Dockerfile ./dockerfiles/bin9-webmin --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/bin9-webmin:230305 -f ./dockerfiles/bind9-webmin/Dockerfile ./dockerfiles/bind9-webmin --push;
