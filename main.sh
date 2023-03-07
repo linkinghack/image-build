@@ -33,9 +33,10 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-4 -f ./dockerfiles/vm/vm-rootfs-k1.25/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0 -f ./dockerfiles/vm/vm-rootfs-k1.24.0/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.24.0 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-cdi:k125-4 -f ./dockerfiles/vm/cdi.Dockerfile ./dockerfiles/vm --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k126-1 -f ./dockerfiles/vm/vm-rootfs-k1.26.1/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.26.1 --push;
 
 # build NicTool image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;
 
 # build bind9-webmin
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/bin9-webmin:230305 -f ./dockerfiles/bind9-webmin/Dockerfile ./dockerfiles/bind9-webmin --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/bin9-webmin:230305 -f ./dockerfiles/bind9-webmin/Dockerfile ./dockerfiles/bind9-webmin --push;
