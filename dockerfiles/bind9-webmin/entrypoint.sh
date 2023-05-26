@@ -28,8 +28,8 @@ webmin server restart;
 # default behaviour is to launch named
 if [[ -z "${1}" ]]; then
     echo "Starting named..."
-    echo "exec $(which named) -u \"${BIND9_USER}\" \"${FOREGROUND_FLAG}\" \"${EXTRA_ARGS}\""
-    exec $(command -v named) -u "${BIND9_USER}" "${FOREGROUND_FLAG}" ${EXTRA_ARGS}
+    # echo "exec $(which named) -u \"${BIND9_USER}\" \"${FOREGROUND_FLAG}\" \"${EXTRA_ARGS}\""
+    # exec $(command -v named) -u "${BIND9_USER}" "${FOREGROUND_FLAG}" ${EXTRA_ARGS}
 else
     exec "${@}"
 fi
