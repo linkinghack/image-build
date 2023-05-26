@@ -14,6 +14,7 @@ docker pull --platform=linux/amd64 ${image_repo}/${image_name}
 docker tag  ${image_repo}/${image_name} ${private_repo}/${image_name}-amd64
 docker push ${private_repo}/${image_name}-amd64
 
+docker manifest rm ${private_repo}/${image_name} || echo "manifest does not exists, now create it"
 docker manifest create ${private_repo}/${image_name} ${private_repo}/${image_name}-arm64 ${private_repo}/${image_name}-amd64
 docker manifest push ${private_repo}/${image_name}
 """
