@@ -1,4 +1,9 @@
 FROM ubuntu:jammy AS rootfs
+
+RUN apt-get update -y && \
+    apt-get install -y --no-install-recommends sudo curl gnupg  && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu jammy stable" | tee /etc/apt/sources.list.d/docker.list
 RUN apt-get update -y && \
