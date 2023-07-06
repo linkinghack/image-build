@@ -37,7 +37,10 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-9 -f ./dockerfiles/vm/vm-rootfs-k1.25/1.25.9-fedora38-with-kdevel.Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
 
 # build 1.24.0 CDI rootfs image
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0-cdi -f ./dockerfiles/vm/vm-cdi-rootfs-1.24.0/Dockerfile ./dockerfiles/vm/vm-cdi-rootfs-1.24.0 --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0-cdi -f ./dockerfiles/vm/vm-cdi-rootfs-1.24.0/Dockerfile ./dockerfiles/vm/vm-cdi-rootfs-1.24.0 --push;
+
+# Build Python base images
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/python:3.10-transformer -f ./dockerfiles/lang-base/python/transformer/Dockerfile ./dockerfiles/lang-base/python/transformer --push;
 
 # build NicTool image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;

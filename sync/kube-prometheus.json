@@ -1,5 +1,4 @@
 [
-
    "docker.io/grafana/grafana:9.3.2",
    "quay.io/prometheus/alertmanager:v0.25.0",
    "quay.io/prometheus/blackbox-exporter:v0.23.0",
