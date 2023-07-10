@@ -53,7 +53,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 git clone git@github.com:kubernetes-sigs/prometheus-adapter.git
 cd prometheus-adapter
 git checkout v0.10.0
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/prometheus-adapter:v0.10.0 . --push
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/prometheus-adapter:v0.10.0 --build-arg GO_VERSION=1.18.9 . --push
 
 # build NicTool image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;
