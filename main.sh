@@ -40,7 +40,14 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0-cdi -f ./dockerfiles/vm/vm-cdi-rootfs-1.24.0/Dockerfile ./dockerfiles/vm/vm-cdi-rootfs-1.24.0 --push;
 
 # Build Python base images
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/python:3.10-transformer -f ./dockerfiles/lang-base/python/transformer/Dockerfile ./dockerfiles/lang-base/python/transformer --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/python:3.10-transformer -f ./dockerfiles/lang-base/python/transformer/Dockerfile ./dockerfiles/lang-base/python/transformer --push;
+
+# Build istio bookinfo example
+git clone git@github.com:istio/istio.git
+cd istio
+export TAG=230710
+export HUB=docker.io/linkinghack
+docker buildx bake -f ./samples/bookinfo/src/docker-bake.hcl --set "*.platform=linux/amd64,linux/arm64" --push --provenance=false
 
 # build NicTool image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;
