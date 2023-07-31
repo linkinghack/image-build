@@ -1,8 +1,7 @@
 FROM fedora:38 AS rootfs
 
 RUN dnf update -y && \
-    dnf install -y systemd-sysv udev redhat-lsb-core cloud-init sudo curl gnupg dnf-plugins-core \
-    && systemctl enable cloud-init
+    dnf install -y systemd-sysv udev redhat-lsb-core cloud-init sudo curl gnupg dnf-plugins-core
 
 ## Systemd utils
 RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables \
