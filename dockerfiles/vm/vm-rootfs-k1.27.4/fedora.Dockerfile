@@ -50,7 +50,6 @@ RUN systemctl enable containerd \
 COPY kubernetes.repo /etc/yum.repos.d/kubernetes.repo
 RUN dnf install -y kubeadm-1.27.4-0 kubelet-1.27.4-0 kubectl-1.27.4-0 --disableexcludes=kubernetes
 
-RUN setenforce 0
 RUN sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 RUN systemctl enable kubelet
