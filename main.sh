@@ -35,6 +35,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-cdi:k125-4 -f ./dockerfiles/vm/cdi.Dockerfile ./dockerfiles/vm --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k126-2 -f ./dockerfiles/vm/vm-rootfs-k1.26.2/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.26.2 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-9 -f ./dockerfiles/vm/vm-rootfs-k1.25/1.25.9-fedora38-with-kdevel.Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-fedora38:k127-4 -f ./dockerfiles/vm/vm-rootfs-k1.27.4/fedora.Dockerfile ./dockerfiles/vm/vm-rootfs-k1.27.4 --push;
 
 # build 1.24.0 CDI rootfs image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k124-0-cdi -f ./dockerfiles/vm/vm-cdi-rootfs-1.24.0/Dockerfile ./dockerfiles/vm/vm-cdi-rootfs-1.24.0 --push;
@@ -50,10 +51,10 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx bake -f ./samples/bookinfo/src/docker-bake.hcl --set "*.platform=linux/amd64,linux/arm64" --push --provenance=false
 
 # Build prometheus-adapter
-git clone git@github.com:kubernetes-sigs/prometheus-adapter.git
-cd prometheus-adapter
-git checkout v0.10.0
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/prometheus-adapter:v0.10.0 --build-arg GO_VERSION=1.18.9 . --push
+# git clone git@github.com:kubernetes-sigs/prometheus-adapter.git
+# cd prometheus-adapter
+# git checkout v0.10.0
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/prometheus-adapter:v0.10.0 --build-arg GO_VERSION=1.18.9 . --push
 
 # build NicTool image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/nictool:221123 -f ./dockerfiles/nictool/Dockerfile ./dockerfiles/nictool --push;

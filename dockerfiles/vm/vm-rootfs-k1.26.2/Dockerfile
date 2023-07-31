@@ -1,7 +1,7 @@
 FROM ubuntu:jammy AS rootfs
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg vim net-tools dnsutils conntrack && \
+    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg vim net-tools dnsutils conntrack socat && \
     rm -rf /var/lib/apt/lists/*
 
 RUN echo "overlay \n\
