@@ -55,7 +55,7 @@ RUN sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 RUN systemctl enable kubelet
 
 RUN dnf update \
-  && dnf install openssh-server -y && systemctl enable ssh \
+  && dnf install openssh-server -y && systemctl enable sshd \
   && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
   && sed -i 's/#PermitRootLogin prohibit-password/#PermitRootLogin yes/' /etc/ssh/sshd_config
 
