@@ -4,7 +4,7 @@ RUN apt-get update -y && \
     apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg && \
     rm -rf /var/lib/apt/lists/*
 
-RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables \
+RUN apt-get install -y xfsprogs vim net-tools dnsutils conntrack socat nftables \
   && systemctl enable nftables
 
 RUN echo "overlay \n\
