@@ -4,8 +4,8 @@ RUN apt-get update -y && \
     apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg && \
     rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y xfsprogs vim net-tools dnsutils conntrack socat nftables \
-  && systemctl enable nftables
+RUN apt-get install -y xfsprogs vim net-tools dnsutils conntrack socat nftables
+  
 
 RUN echo "overlay \n\
 br_netfilter" \
@@ -34,6 +34,7 @@ RUN apt-get update -y && \
     apt-mark hold kubelet kubeadm kubectl
 
 RUN systemctl enable kubelet
+RUN systemctl enable nftables
 
 RUN apt update \
   && apt install openssh-server -y && systemctl enable ssh \
