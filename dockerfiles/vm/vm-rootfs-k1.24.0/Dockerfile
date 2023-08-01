@@ -1,11 +1,10 @@
 FROM ubuntu:jammy AS rootfs
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg
 
 RUN apt-get install -y xfsprogs vim net-tools dnsutils conntrack socat nftables
-  
+# RUN rm -rf /var/lib/apt/lists/*
 
 RUN echo "overlay \n\
 br_netfilter" \
