@@ -1,8 +1,11 @@
 FROM ubuntu:jammy AS rootfs
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg vim net-tools dnsutils conntrack socat && \
+    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg && \
     rm -rf /var/lib/apt/lists/*
+
+RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables \
+  && systemctl enable nftables
 
 RUN echo "overlay \n\
 br_netfilter" \
@@ -37,6 +40,8 @@ RUN apt update \
   && sed -i 's/#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
   && sed -i 's/#PermitRootLogin prohibit-password/#PermitRootLogin yes/' /etc/ssh/sshd_config
 
+RUN update-alternatives --set iptables /usr/sbin/iptables-legacy \
+    && update-alternatives --set ip6tables /usr/sbin/ip6tables-legacy
 
 RUN echo 'net.ipv4.conf.lxc*.rp_filter = 0' > /etc/sysctl.d/99-override_cilium_rp_filter.conf
 
