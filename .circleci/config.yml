@@ -5,6 +5,19 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
+  arm-env:
+    docker:
+      - image: cimg/go:1.17
+    resource_class: large
+    
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
+      - run: |
+          uname -a;
+          docker run --rm ubuntu uname -a
   build-image:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
@@ -19,13 +32,14 @@ jobs:
       - run:
           name: "Setup Buildx"
           command: "docker buildx create --use"
-      - run:
-          name: "BuildImage"
-          command: "bash main.sh"
+      # - run:
+      #     name: "BuildImage"
+      #     command: "bash main.sh"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   image-build-workflow:
     jobs:
+      - arm-env
       - build-image
