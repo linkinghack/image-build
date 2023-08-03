@@ -13,6 +13,9 @@ br_netfilter" \
 RUN echo "net.bridge.bridge-nf-call-iptables  = 1 \n\
 net.bridge.bridge-nf-call-ip6tables = 1 \n\
 net.ipv4.ip_forward                 = 1" >> /etc/sysctl.d/k8s.conf
+RUN echo "export TZ=Asia/Shanghai " >> /etc/profile \
+  && DEBIAN_FRONTEND=noninteractive TZ=Asia/Shanghai apt-get -y install tzdata \
+  && echo "Asia/Shanghai" > /etc/timezone
 
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
     echo "deb [signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu jammy stable" | tee /etc/apt/sources.list.d/docker.list
@@ -22,7 +25,9 @@ RUN apt-get update -y && \
 
 RUN mkdir -p /etc/containerd && containerd config default | sed 's/SystemdCgroup = false/SystemdCgroup = true/' > /etc/containerd/config.toml
 RUN sed -i 's|k8s.gcr.io/pause:3.6|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.8|g' /etc/containerd/config.toml \
-  && sed -i 's|registry.k8s.io/pause:3.6|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.8|g' /etc/containerd/config.toml
+  && sed -i 's|registry.k8s.io/pause:3.6|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.8|g' /etc/containerd/config.toml \
+  && sed -i 's|k8s.gcr.io/pause:3.8|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.8|g' /etc/containerd/config.toml \
+  && sed -i 's|registry.k8s.io/pause:3.8|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.8|g' /etc/containerd/config.toml
 RUN systemctl enable containerd
 
 RUN curl -fsSL https://dl.k8s.io/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-archive-keyring.gpg \
@@ -36,6 +41,7 @@ RUN apt-get update -y && \
 
 RUN systemctl enable kubelet
 RUN systemctl enable nftables
+RUN systemctl enable chrony
 
 RUN apt update \
   && apt install openssh-server -y && systemctl enable ssh \
