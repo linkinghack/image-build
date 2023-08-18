@@ -33,6 +33,26 @@ jobs:
       - run:
           name: "BuildImage"
           command: "bash main.sh"
+  
+  build-devcontainer:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Install nodejs"
+          command: "sudo snap install node --classic -y"
+      - run:
+          name: "Install devcontainer CLI"
+          command: "npm install -g @devcontainers/cli"
+      - run:
+          name: "Set workdir"
+          command: "cd devcontainers"
+      - run:
+          name: "Build devcontainer"
+          command: "bash build.sh"
+  
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -41,3 +61,4 @@ workflows:
     jobs:
       # - arm-env
       - build-image
+      - build-devcontainer

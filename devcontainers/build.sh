@@ -1,5 +1,7 @@
 #!/bin/bash
 
+docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+
 export IMAEG_NAME="linkinghack/devcontainer-base:bullseye-2308-1"
 export BUILD_DIR="./base-image/debian"
 

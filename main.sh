@@ -64,7 +64,3 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # build bind9-webmin
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/bin9-webmin:230305 -f ./dockerfiles/bind9-webmin/Dockerfile ./dockerfiles/bind9-webmin --push;
 
-
-### Build devcontainers
-cd devcontainers;
-bash build.sh;
