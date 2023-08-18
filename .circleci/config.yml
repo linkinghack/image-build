@@ -40,11 +40,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Set workdir"
-          command: "cd devcontainers"
-      - run:
           name: "Build devcontainer"
-          command: "bash build.sh"
+          command: "cd devcontainers && bash build.sh"
   
 
 
