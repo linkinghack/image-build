@@ -40,12 +40,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Install nodejs"
-          command: "sudo snap install node --classic -y"
-      - run:
-          name: "Install devcontainer CLI"
-          command: "npm install -g @devcontainers/cli"
-      - run:
           name: "Set workdir"
           command: "cd devcontainers"
       - run:
