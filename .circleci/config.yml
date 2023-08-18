@@ -39,6 +39,9 @@ jobs:
       image: ubuntu-2204:2023.02.1
     steps:
       - checkout
+      - run: 
+          name: "Setup docker buildx"
+          command: "docker buildx create --use"
       - run:
           name: "Build devcontainer"
           command: "cd devcontainers && bash build.sh"
