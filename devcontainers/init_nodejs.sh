@@ -13,4 +13,4 @@ export PATH=/usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin:$PATH
 sudo chmod -R 777 /usr/local/lib/nodejs/node-v18.17.1-linux-x64
 
 ## install devcontainer
-sudo npm install -g @devcontainers/cli
+npm install -g @devcontainers/cli
