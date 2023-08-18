@@ -1,0 +1,44 @@
+{
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": "."
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": "true",
+            "installOhMyZsh": "true",
+            "installOhMyZshConfig": "true",
+			"username": "devspace",
+            "configureZshAsDefaultShell": "true",
+            "nonFreePackages": "true",
+			"userUid": "1000",
+			"userGid": "1000",
+			"upgradePackages": "true"
+		},
+		"ghcr.io/devcontainers/features/git:1": {
+            "version": "latest",
+            "ppa": "true"
+        },
+        "ghcr.io/devcontainers/features/git-lfs:1": {
+            "version": "latest",
+            "autoPull": "false"
+        },
+        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+            "version": "latest",
+            "moby": "true",
+            "dockerDashComposeVersion": "v2",
+            "azureDnsAutoDetection": "false",
+            "dockerDefaultAddressPool": "base=192.166.0.0/16,size=24",
+            "installDockerBuildx": "true"
+        },
+        "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts",
+            "nodeGypDependencies": "true",
+            "nvmVersion": "0.39.4",
+            "nvmInstallPath": "/usr/local/share/nvm"
+        },
+        "ghcr.io/devcontainers/features/python:1": {}
+	},
+	"remoteUser": "root"
+}
