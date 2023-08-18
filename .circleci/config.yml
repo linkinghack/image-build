@@ -39,5 +39,5 @@ jobs:
 workflows:
   image-build-workflow:
     jobs:
-      - arm-env
+      # - arm-env
       - build-image
