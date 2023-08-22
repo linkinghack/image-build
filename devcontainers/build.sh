@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -xeu
 docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 ## Init NodeJS env

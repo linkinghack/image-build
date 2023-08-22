@@ -1,7 +1,9 @@
 {
+    "name": "Develop Env Base Image",
 	"build": {
 		"dockerfile": "./Dockerfile",
-		"context": "."
+		"context": ".",
+        "args": {}
 	},
 	"features": {
 		"ghcr.io/devcontainers/features/common-utils:2": {

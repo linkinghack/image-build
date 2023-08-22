@@ -1,3 +1,6 @@
+#!/bin/bash
+
+set -xeu
 docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 # build eosio-cdt.181 base image
