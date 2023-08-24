@@ -5,8 +5,8 @@
 		"context": ".",
         "args": {}
 	},
-	"features": {
-		"ghcr.io/devcontainers/features/common-utils:2": {
+	"features": {          
+		"ghcr.io/linkinghack/devcontainer-features/common-utils:latest": {
 			"installZsh": "true",
             "installOhMyZsh": "true",
             "installOhMyZshConfig": "true",
