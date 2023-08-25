@@ -8,6 +8,6 @@ RUN chmod -R 755 /usr/local/share/nvm \
     && nvm install v14.21.3 \
     && nvm install v12.22.12
 
+RUN npm i -g typescript
 USER devspace
 
-RUN npm i -g typescript
