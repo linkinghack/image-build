@@ -1,0 +1,13 @@
+{
+    "name": "Java development environment Image",
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": ".",
+        "args": {}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/go:1": {}
+	},
+	"remoteUser": "root",
+    "containerUser": "devspace"
+}
