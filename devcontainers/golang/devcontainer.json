@@ -1,5 +1,5 @@
 {
-    "name": "Java development environment Image",
+    "name": "Golang development environment Image",
 	"build": {
 		"dockerfile": "./Dockerfile",
 		"context": ".",
