@@ -1,0 +1,18 @@
+{
+    "name": "Java development environment Image",
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": ".",
+        "args": {}
+	},
+	"features": {
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts",
+            "nodeGypDependencies": "true",
+            "nvmVersion": "0.39.4",
+            "nvmInstallPath": "/usr/local/share/nvm"
+        }
+	},
+	"remoteUser": "root",
+    "containerUser": "devspace"
+}

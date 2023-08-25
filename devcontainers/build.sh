@@ -7,8 +7,8 @@ chmod a+x ./init_nodejs.sh
 ./init_nodejs.sh
 . ~/.profile
 
-IMAGE_NAME="linkinghack/devenv-go:bullseye-2308-1"
-BUILD_DIR="./golang"
+IMAGE_NAME="linkinghack/devenv-nodejs:bullseye-2308-1"
+BUILD_DIR="./nodejs"
 
 /usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin/devcontainer build \
     --platform linux/arm64,linux/amd64 \
