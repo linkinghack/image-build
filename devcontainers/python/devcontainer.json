@@ -11,10 +11,6 @@
 			"installTools": true,
 			"installJupyterlab": true
 		},
-		"ghcr.io/devcontainers/features/conda:1": {
-			"version": "latest",
-			"addCondaForge": "true"
-		},
 		"ghcr.io/devcontainers/features/sshd:1": {},
 		"ghcr.io/devcontainers/features/nvidia-cuda:1": {
 			"installCudnn": true,
