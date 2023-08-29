@@ -8,4 +8,4 @@
 ---------------
 ☕️ 当前开发环境类型为: Python with Nvidia CUDA
 🕹️ 当前环境包含CUDA 11.8, cuDNN 8.6.0.163
-🛠️ 当前环境已安装conda，您可以使用conda来切换多个python版本。
+🛠️ 当前环境已安装conda，您可以使用conda来切换多个python版本; 运行命令`anaconda` 来初始化conda。
