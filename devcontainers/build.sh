@@ -7,9 +7,9 @@ chmod a+x ./init_nodejs.sh
 ./init_nodejs.sh
 . ~/.profile
 
-## Golang
-IMAGE_NAME="linkinghack/devenv-dotnet:bullseye-2308-1"
-BUILD_DIR="./dotnet"
+## General
+IMAGE_NAME="linkinghack/devenv-python-base:bullseye-2308-1"
+BUILD_DIR="./python"
 
 /usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin/devcontainer build \
     --platform linux/arm64,linux/amd64 \

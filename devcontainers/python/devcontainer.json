@@ -1,0 +1,27 @@
+{
+    "name": "Dotnet development environment Image",
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": ".",
+        "args": {}
+	},
+	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "3.11",
+			"installTools": true,
+			"installJupyterlab": true
+		},
+		"ghcr.io/devcontainers/features/conda:1": {
+			"version": "latest",
+			"addCondaForge": "true"
+		},
+		"ghcr.io/devcontainers/features/sshd:1": {},
+		"ghcr.io/devcontainers/features/nvidia-cuda:1": {
+			"installCudnn": true,
+			"cudaVersion": "11.8",
+			"cudnnVersion": "8.6.0.163"
+		}
+	},
+	"remoteUser": "root",
+    "containerUser": "devspace"
+}
