@@ -4,7 +4,7 @@ RUN dnf update -y && \
     dnf install -y systemd-sysv udev redhat-lsb-core cloud-init sudo curl gnupg dnf-plugins-core
 
 ## Systemd utils
-RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables chrony nfs-common \
+RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables chrony nfs-common nfs-kernel-server  \
   && systemctl enable nftables
 
 RUN echo "overlay \n\
