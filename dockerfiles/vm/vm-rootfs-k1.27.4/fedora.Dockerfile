@@ -4,7 +4,7 @@ RUN dnf update -y && \
     dnf install -y systemd-sysv udev redhat-lsb-core cloud-init sudo curl gnupg dnf-plugins-core
 
 ## Systemd utils
-RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables \
+RUN dnf install -y xfsprogs vim net-tools dnsutils conntrack socat nftables chrony nfs-common \
   && systemctl enable nftables
 
 RUN echo "overlay \n\
@@ -27,7 +27,9 @@ RUN mkdir -p /etc/containerd && containerd config default | sed 's/SystemdCgroup
 RUN sed -i 's|k8s.gcr.io/pause:3.6|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml \
   && sed -i 's|registry.k8s.io/pause:3.6|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml \
   && sed -i 's|k8s.gcr.io/pause:3.8|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml \
-  && sed -i 's|registry.k8s.io/pause:3.8|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml
+  && sed -i 's|registry.k8s.io/pause:3.8|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml \
+  && sed -i 's|k8s.gcr.io/pause:3.9|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml \
+  && sed -i 's|registry.k8s.io/pause:3.9|artifactory.dep.devops.cmit.cloud:20101/tools/multi-arch/pause:3.9|g' /etc/containerd/config.toml
 RUN systemctl enable containerd \
   && systemctl enable docker
 

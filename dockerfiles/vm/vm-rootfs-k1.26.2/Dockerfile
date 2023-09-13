@@ -1,8 +1,9 @@
 FROM ubuntu:jammy AS rootfs
 
 RUN apt-get update -y && \
-    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg vim net-tools dnsutils conntrack socat && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends systemd-sysv udev lsb-release cloud-init sudo curl gnupg apt-transport-https ca-certificates
+
+RUN apt-get install -y xfsprogs vim net-tools dnsutils conntrack socat nftables chrony kmod nfs-common
 
 RUN echo "overlay \n\
 br_netfilter" \
