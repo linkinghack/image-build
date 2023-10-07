@@ -34,7 +34,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 
 # build VM base image for Virtink VM for ClusterAPI clusters
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-4 -f ./dockerfiles/vm/vm-rootfs-k1.25/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-ubuntu:k124-0-2309-1 -f ./dockerfiles/vm/vm-rootfs-k1.24.0/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.24.0 --push;
+docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-ubuntu:k124-0-2310-1 -f ./dockerfiles/vm/vm-rootfs-k1.24.0/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.24.0 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-cdi:k125-12 -f ./dockerfiles/vm/cdi.Dockerfile ./dockerfiles/vm --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-ubuntu:k126-2-2309-1 -f ./dockerfiles/vm/vm-rootfs-k1.26.2/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.26.2 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-12 -f ./dockerfiles/vm/vm-rootfs-k1.25/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
