@@ -27,7 +27,7 @@
         },
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "version": "latest",
-            "moby": "true",
+            "moby": "false",
             "dockerDashComposeVersion": "v2",
             "azureDnsAutoDetection": "false",
             "dockerDefaultAddressPool": "base=192.166.0.0/16,size=24",
