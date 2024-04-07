@@ -1,23 +1,23 @@
 {
     "name": "Develop Env Base Image",
-	"build": {
-		"dockerfile": "./Dockerfile",
-		"context": ".",
+    "build": {
+        "dockerfile": "./Dockerfile",
+        "context": ".",
         "args": {}
-	},
-	"features": {          
-		"ghcr.io/linkinghack/devcontainer-features/common-utils:latest": {
-			"installZsh": "true",
+    },
+    "features": {
+        "ghcr.io/linkinghack/devcontainer-features/common-utils:latest": {
+            "installZsh": "true",
             "installOhMyZsh": "true",
             "installOhMyZshConfig": "true",
-			"username": "devspace",
+            "username": "devspace",
             "configureZshAsDefaultShell": "true",
             "nonFreePackages": "true",
-			"userUid": "1000",
-			"userGid": "1000",
-			"upgradePackages": "true"
-		},
-		"ghcr.io/devcontainers/features/git:1": {
+            "userUid": "1000",
+            "userGid": "1000",
+            "upgradePackages": "true"
+        },
+        "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
             "ppa": "true"
         },
@@ -37,10 +37,10 @@
         "ghcr.io/devcontainers/features/node:1": {
             "version": "lts",
             "nodeGypDependencies": "true",
-            "nvmVersion": "0.39.4",
+            "nvmVersion": "latest",
             "nvmInstallPath": "/usr/local/share/nvm"
         },
         "ghcr.io/devcontainers/features/python:1": {}
-	},
-	"remoteUser": "root"
+    },
+    "remoteUser": "root"
 }
