@@ -10,7 +10,7 @@ chmod a+x ./init_nodejs.sh
 ## General 
 
 ## 1. Build IDE base image (including node )
-IMAGE_NAME="linkinghack/devenv-base-debian-withnode:bullseye-2404-1"
+IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-2404-1"
 BUILD_DIR="./base-image/debian"
 
 # ## 2. Build Java developing environment
