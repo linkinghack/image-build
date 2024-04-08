@@ -6,6 +6,5 @@
 🔍 您可以通过调出命令面板来搜索更多功能。(Cmd/Ctrl + Shift + P or F1)
 🛠️ 您可以直接使用`kubectl`, `helm`等命令行工具直接访问当前EKC集群，也可以使用`docker`命令在本地构建镜像或测试容器应用。
 ---------------
-☕️ 当前开发环境类型为: Java+Maven+Gradle+Ant+Groovy
-💡 当前环境中安装了多个JDK版本,您可以使用命令 `sdk list java`列出当前环境已经安装的Java版本列表,
-  使用命令`sdk use java <version>`来切换JDK版本: 例如`sdk use java 17.0.0.0-tem`
+☕️ 当前开发环境类型为: C/C++
+🛠️ 当前环境包含clang,llvm,gcc,make,cmake等多种工具。

@@ -8,14 +8,16 @@
 	"features": {
 		"ghcr.io/linkinghack/devcontainer-features/java:latest": {
             "version": "8",
-            "additionalVersions": "11,17,20",
+            "additionalVersions": "11,17,20,22",
             "jdkDistro": "tem",
             "installGradle": true,
             "gradleVersion": "latest",
             "installMaven": true,
             "mavenVersion": "latest",
             "installAnt": true,
-            "antVersion": "latest"
+            "antVersion": "latest",
+            "installGroovy": true,
+            "groovyVersion": "latest"
         }
 	},
 	"remoteUser": "root",
