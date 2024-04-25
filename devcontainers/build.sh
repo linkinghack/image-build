@@ -14,8 +14,8 @@ chmod a+x ./init_nodejs.sh
 # BUILD_DIR="./base-image/debian"
 
 # ## 2. Build Java developing environment
-IMAGE_NAME="linkinghack/devenv-java-ubuntu:2404-1"
-BUILD_DIR="./java"
+# IMAGE_NAME="linkinghack/devenv-java-ubuntu:2404-1"
+# BUILD_DIR="./java"
 
 # ## 3. Build Golang developing environment
 # IMAGE_NAME="linkinghack/devenv-golang:bullseye-2308-1"
@@ -25,6 +25,9 @@ BUILD_DIR="./java"
 # IMAGE_NAME="linkinghack/devenv-python-base:bullseye-2308-1"
 # BUILD_DIR="./dotnet"
 
+## 5. Build CXX dev env
+IMAGE_NAME="linkinghack/devenv-cxx-ubuntu:clang14-2404-1"
+BUILD_DIR="./cxx"
 
 /usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin/devcontainer build \
     --platform linux/arm64,linux/amd64 \
