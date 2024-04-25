@@ -52,5 +52,5 @@ workflows:
   image-build-workflow:
     jobs:
       # - arm-env
-      - build-image
-      # - build-devcontainer
+      # - build-image
+      - build-devcontainer
