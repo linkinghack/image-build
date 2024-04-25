@@ -40,7 +40,7 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-ubuntu:k126-2-2310-1 -f ./dockerfiles/vm/vm-rootfs-k1.26.2/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.26.2 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs:k125-12 -f ./dockerfiles/vm/vm-rootfs-k1.25/Dockerfile ./dockerfiles/vm/vm-rootfs-k1.25 --push;
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-fedora38:k127-4-2310-1 -f ./dockerfiles/vm/vm-rootfs-k1.27.4/fedora.Dockerfile ./dockerfiles/vm/vm-rootfs-k1.27.4 --push;
-docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-ubuntujammy:k128-8-2403-1 -f ./dockerfiles/vm/vm-rootfs-1.28/128-8.ubuntu.Dockerfile ./dockerfiles/vm/vm-rootfs-1.28 --push;
+# docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/vm-rootfs-ubuntujammy:k128-8-2403-1 -f ./dockerfiles/vm/vm-rootfs-1.28/128-8.ubuntu.Dockerfile ./dockerfiles/vm/vm-rootfs-1.28 --push;
 # docker build -t linkinghack/vm-rootfs-fedora38:k127-4-amd64 -f ./dockerfiles/vm/vm-rootfs-k1.27.4/fedora.Dockerfile ./dockerfiles/vm/vm-rootfs-k1.27.4;
 # docker push linkinghack/vm-rootfs-fedora38:k127-4-amd64
 
