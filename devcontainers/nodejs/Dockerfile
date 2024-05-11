@@ -4,9 +4,14 @@ COPY first-run-notice.txt  /usr/local/etc/vscode-dev-containers/first-run-notice
 ENV NVM_DIR=/usr/local/share/nvm
 RUN chmod -R 777 /usr/local/share/nvm \
     && [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" \
-    && nvm install v16.20.2 \
-    && nvm install v14.21.3 \
-    && nvm install v12.22.12
+    && nvm install lts/iron \
+    && nvm install lts/hydrogen \
+    && nvm install lts/gallium \
+    && nvm install lts/fermium \
+    &&  apt-get update -y \
+    &&  apt-get upgrade -y \
+    && apt-get clean \
+    && apt-get autoclean
 
 RUN npm i -g typescript
 USER devspace
