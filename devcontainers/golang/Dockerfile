@@ -5,6 +5,5 @@ RUN chmod -R 777 /usr/local/share/nvm \
     &&  apt-get update -y \
     &&  apt-get upgrade -y \
     && apt-get clean \
-    && apt-get autoclean \
-    && apt-get autoremove
+    && apt-get autoclean
 USER devspace
