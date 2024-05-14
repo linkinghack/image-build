@@ -36,6 +36,6 @@ fi
 unset __conda_setup
 
 ## install more python versions
-conda create -n py27 -q -y  python=2.7
 conda create -n py38 -q -y  python=3.8
 conda create -n py311 -q -y  python=3.11
+conda create -n py312 -q -y  python=3.12

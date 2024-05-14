@@ -1,0 +1,13 @@
+{
+    "name": "CXX development environment Image",
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": ".",
+        "args": {}
+	},
+	"features": {
+        
+	},
+	"remoteUser": "root",
+    "containerUser": "devspace"
+}
