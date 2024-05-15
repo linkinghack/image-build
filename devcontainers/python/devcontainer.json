@@ -6,12 +6,7 @@
         "args": {}
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/sshd:1": {},
-		"ghcr.io/devcontainers/features/nvidia-cuda:1": {
-			"installCudnn": true,
-			"cudaVersion": "11.8",
-			"cudnnVersion": "8.6.0.163"
-		}
+		"ghcr.io/devcontainers/features/sshd:1": {}
 	},
 	"remoteUser": "root",
     "containerUser": "devspace"
