@@ -6,8 +6,8 @@
         "args": {}
 	},
 	"features": {
-		"ghcr.io/linkinghack/devcontainer-features/dotnet:1.1.5": {
-			"version": "7",
+		"ghcr.io/linkinghack/devcontainer-features/dotnet:2": {
+			"version": "latest",
 			"additionalVersions": "6,3",
 			"runtimeOnly": false,
 			"installUsingApt": false
