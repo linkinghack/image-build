@@ -19,18 +19,21 @@ fi
 
 ## start install
 chmod +x $HOME/miniconda.sh;
-$HOME/miniconda.sh -b
+sudo $HOME/miniconda.sh -b -p /usr/local/miniconda3
 
 echo "Installation of miniconda completed"
 
-__conda_setup="$('/home/devspace/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+# clear installation file
+rm -f $HOME/miniconda.sh
+
+__conda_setup="$('/usr/local/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "$HOME/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "$HOME/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/usr/local/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="$HOME/miniconda3/bin:$PATH"
+        export PATH="/usr/local/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup

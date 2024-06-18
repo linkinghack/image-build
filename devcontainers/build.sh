@@ -30,12 +30,12 @@ chmod a+x ./init_nodejs.sh
 # BUILD_DIR="./cxx"
 
 ## 6. Build Python dev env
-# IMAGE_NAME="linkinghack/devenv-python-ubuntu:bullseye-2405-1"
-# BUILD_DIR="./python"
+IMAGE_NAME="linkinghack/devenv-python-ubuntu:bullseye-2406-1"
+BUILD_DIR="./python"
 
 ## 7. Build All in One dev env
-IMAGE_NAME="linkinghack/devenv-allinone-ubuntu:bullseye-2405-1"
-BUILD_DIR="./all-in-one"
+# IMAGE_NAME="linkinghack/devenv-allinone-ubuntu:bullseye-2405-1"
+# BUILD_DIR="./all-in-one"
 
 ## X. Build NodeJS dev env
 # cd ./nodejs; bash build-image.sh
