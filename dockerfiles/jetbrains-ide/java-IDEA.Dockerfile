@@ -38,7 +38,7 @@ RUN mkdir -p $PROJECTOR_DIR
 COPY --from=ideDownloader /ide $PROJECTOR_DIR/ide
 # copy projector files to the container:
 ADD static $PROJECTOR_DIR
-# copy projector:
+# copy projector
 COPY --from=projectorGradleBuilder $PROJECTOR_DIR/projector-server/projector-server/build/distributions/projector-server.zip $PROJECTOR_DIR
 # prepare IDE - apply projector-server:
 RUN unzip $PROJECTOR_DIR/projector-server.zip
@@ -50,15 +50,16 @@ RUN chmod 644 $PROJECTOR_DIR/ide/projector-server/lib/*
 
 FROM linkinghack/devenv-java-ubuntu:2405-1
 
+USER root
 RUN true \
 # Any command which returns non-zero exit code will cause this shell script to exit immediately:
    && set -e \
 # Activate debugging to show execution details: all commands will be printed before execution
    && set -x \
 # install packages:
-    && apt-get update \
+    &&  apt-get update \
 # packages for awt:
-    && apt-get install libxext6 libxrender1 libxtst6 libxi6 libfreetype6 -y \
+    &&  apt-get install libxext6 libxrender1 libxtst6 libxi6 libfreetype6 -y \
 # packages for user convenience:
     && apt-get install git bash-completion sudo -y \
 # packages for IDEA (to disable warnings):
