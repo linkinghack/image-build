@@ -21,7 +21,7 @@ ENV PROJECTOR_DIR /projector
 # RUN if [ "$buildGradle" = "true" ]; then ./gradlew clean; else echo "Skipping gradle build"; fi
 # RUN if [ "$buildGradle" = "true" ]; then ./gradlew :projector-server:distZip; else echo "Skipping gradle build"; fi
 # RUN cd projector-server/build/distributions && find . -maxdepth 1 -type f -name projector-server-*.zip -exec mv {} projector-server.zip \;
-
+RUN apt-get update && apt-get install wget -y
 RUN mkdir -p $PROJECTOR_DIR/projector-server/projector-server/build/distributions \
    && wget -q -O $PROJECTOR_DIR/projector-server/projector-server/build/distributions/projector-server.zip https://github.com/JetBrains/projector-server/releases/download/v1.8.1/projector-server-v1.8.1.zip \
    && echo "Downloaded projector-server"
