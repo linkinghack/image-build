@@ -99,17 +99,16 @@ RUN true \
 # move run scipt:
     && mv $PROJECTOR_DIR/run.sh run.sh \
 # change user to non-root (http://pjdietz.com/2016/08/28/nginx-in-docker-without-root.html):
-    && mv $PROJECTOR_DIR/$PROJECTOR_USER_NAME /home \
+    # && mv $PROJECTOR_DIR/$PROJECTOR_USER_NAME /home \
     # && useradd -d /home/$PROJECTOR_USER_NAME -s /bin/bash -G sudo $PROJECTOR_USER_NAME \
-    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
-    && chown -R $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME /home/$PROJECTOR_USER_NAME \
-    && chown -R $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME $PROJECTOR_DIR/ide/bin \
-    && chown $PROJECTOR_USER_NAME.$PROJECTOR_USER_NAME run.sh \
+    # && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
+    && chown -R $PROJECTOR_USER_NAME /home/$PROJECTOR_USER_NAME \
+    && chown -R $PROJECTOR_USER_NAME $PROJECTOR_DIR/ide/bin \
+    && chown $PROJECTOR_USER_NAME run.sh \
     && chsh -s /bin/bash $PROJECTOR_USER_NAME \
     && mkdir -p ${BASE_ENV_HOME}/.m2 \
     && chown 1000:1000 ${BASE_ENV_HOME}/.m2 \
     && usermod -aG docker $PROJECTOR_USER_NAME
-
 
 USER $PROJECTOR_USER_NAME
 ENV HOME /home/$PROJECTOR_USER_NAME
