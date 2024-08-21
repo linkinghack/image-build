@@ -12,7 +12,10 @@ docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/java-code-server:java8-11-18-code4.4.0-v1.3 -f ./dockerfiles/cloud-ide/java.Dockerfile ./dockerfiles/cloud-ide --push;
 
 ## Build Jetbrains IDE image - Java IDEA
-docker buildx build --platform linux/arm64,linux/amd64 --build-arg "downloadUrl=https://download.jetbrains.com/idea/ideaIC-2021.3.2.tar.gz" -t linkinghack/java-idea21:240821-1
+docker buildx build --platform linux/arm64,linux/amd64 --build-arg "downloadUrl=https://download.jetbrains.com/idea/ideaIC-2021.3.2.tar.gz" \
+   -t linkinghack/java-idea21:240821-1 -f ./dockerfiles/jetbrains-ide/java-IDEA.Dockerfile \
+   ./dockerfiles/jetbrains-ide \
+   --push;
 
 # build VSO base image
 # docker buildx build --platform linux/arm64,linux/amd64 -t linkinghack/dev-base:bullseye-230116 -f ./dockerfiles/dev-base/Dockerfile ./dockerfiles/dev-base --push;
