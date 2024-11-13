@@ -13,8 +13,8 @@
             "username": "devspace",
             "configureZshAsDefaultShell": true,
             "nonFreePackages": true,
-            "userUid": "1000",
-            "userGid": "1000",
+            "userUid": "1001",
+            "userGid": "1001",
             "upgradePackages": true
         },
         "ghcr.io/devcontainers/features/git:1": {
