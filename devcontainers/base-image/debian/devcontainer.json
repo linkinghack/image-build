@@ -7,40 +7,42 @@
     },
     "features": {
         "ghcr.io/linkinghack/devcontainer-features/common-utils:latest": {
-            "installZsh": "true",
-            "installOhMyZsh": "true",
-            "installOhMyZshConfig": "true",
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "installOhMyZshConfig": true,
             "username": "devspace",
-            "configureZshAsDefaultShell": "true",
-            "nonFreePackages": "true",
+            "configureZshAsDefaultShell": true,
+            "nonFreePackages": true,
             "userUid": "1000",
             "userGid": "1000",
-            "upgradePackages": "true"
+            "upgradePackages": true
         },
         "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
-            "ppa": "true"
+            "ppa": true
         },
         "ghcr.io/devcontainers/features/git-lfs:1": {
             "version": "latest",
-            "autoPull": "false"
+            "autoPull": false
         },
         "ghcr.io/devcontainers/features/docker-in-docker:2": {
             "version": "latest",
-            "moby": "false",
+            "moby": false,
             "dockerDashComposeVersion": "v2",
-            "azureDnsAutoDetection": "false",
+            "azureDnsAutoDetection": false,
             "dockerDefaultAddressPool": "base=192.166.0.0/16,size=24",
-            "installDockerBuildx": "true"
+            "installDockerBuildx": true
         },
         "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
         "ghcr.io/devcontainers/features/node:1": {
             "version": "lts",
-            "nodeGypDependencies": "true",
+            "nodeGypDependencies": true,
             "nvmVersion": "latest",
             "nvmInstallPath": "/usr/local/share/nvm"
         },
-        "ghcr.io/devcontainers/features/python:1": {}
+        "ghcr.io/devcontainers/features/python:1": {
+            "version": "3.10"
+        }
     },
     "remoteUser": "root"
 }

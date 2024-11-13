@@ -10,8 +10,8 @@ chmod a+x ./init_nodejs.sh
 ## General 
 
 ## 1. Build IDE base image (including node )
-# IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-2404-1"
-# BUILD_DIR="./base-image/debian"
+IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-2404-1"
+BUILD_DIR="./base-image/debian"
 
 # ## 2. Build Java developing environment
 # IMAGE_NAME="linkinghack/devenv-java-ubuntu:2405-1"
@@ -30,8 +30,8 @@ chmod a+x ./init_nodejs.sh
 # BUILD_DIR="./cxx"
 
 ## 6. Build Python dev env
-IMAGE_NAME="linkinghack/devenv-python-ubuntu:bullseye-2406-1"
-BUILD_DIR="./python"
+# IMAGE_NAME="linkinghack/devenv-python-ubuntu:bullseye-2406-1"
+# BUILD_DIR="./python"
 
 ## 7. Build All in One dev env
 # IMAGE_NAME="linkinghack/devenv-allinone-ubuntu:bullseye-2405-1"
@@ -41,6 +41,7 @@ BUILD_DIR="./python"
 # cd ./nodejs; bash build-image.sh
 
 
+#### General build command
 /usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin/devcontainer build \
     --platform linux/arm64,linux/amd64 \
     --image-name $IMAGE_NAME \
