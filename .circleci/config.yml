@@ -41,7 +41,7 @@ jobs:
       - checkout
       - run:
           name: "check helm connection"
-          command: "curl -v -L https://get.helm.sh/helm-3.16.3-linux-amd64.tar.gz -o helm.tar.gz"
+          command: "curl -v -L https://get.helm.sh/helm-v3.16.3-linux-amd64.tar.gz -o helm.tar.gz"
       - run: 
           name: "Setup docker buildx"
           command: "docker buildx create --use"
