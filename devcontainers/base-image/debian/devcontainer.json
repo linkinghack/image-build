@@ -17,6 +17,7 @@
             "userGid": "1001",
             "upgradePackages": true
         },
+        "ghcr.io/linkinghack/devcontainer-features/kubectl-helm-minikube:latest": {},
         "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
             "ppa": true
@@ -33,7 +34,6 @@
             "dockerDefaultAddressPool": "base=192.166.0.0/16,size=24",
             "installDockerBuildx": true
         },
-        "ghcr.io/linkinghack/devcontainer-features/kubectl-helm-minikube:latest": {},
         "ghcr.io/devcontainers/features/node:1": {
             "version": "lts",
             "nodeGypDependencies": true,
