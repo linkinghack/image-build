@@ -1,5 +1,5 @@
 {
-    "name": "Dotnet development environment Image",
+    "name": "Python development environment Image",
 	"build": {
 		"dockerfile": "./Dockerfile",
 		"context": ".",

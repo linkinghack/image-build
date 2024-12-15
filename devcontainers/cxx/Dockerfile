@@ -1,4 +1,4 @@
-FROM linkinghack/devenv-base-ubuntu-withnode:jammy-2404-1
+FROM linkinghack/devenv-base-ubuntu-withnode:noble-241114-1
 
 RUN apt update && apt install -y build-essential cmake perl  \
   && apt install -y gdb gdb-bpf \
