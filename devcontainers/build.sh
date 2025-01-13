@@ -13,13 +13,16 @@ chmod a+x ./init_nodejs.sh
 # IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:noble-241114-1"
 # BUILD_DIR="./base-image/debian"
 
+IMAGE_NAME="linkinghack/devenv-base-fedora42-withnode:250113-1"
+BUILD_DIR="./base-image/fedora"
+
 # ## 2. Build Java developing environment
 # IMAGE_NAME="linkinghack/devenv-java-ubuntu:2412-1"
 # BUILD_DIR="./java"
 
 # ## 3. Build Golang developing environment
-IMAGE_NAME="linkinghack/devenv-golang:bullseye-2501-1"
-BUILD_DIR="./golang"
+# IMAGE_NAME="linkinghack/devenv-golang:bullseye-2501-1"
+# BUILD_DIR="./golang"
 
 # ## 4. Build dotnet dev env
 # IMAGE_NAME="linkinghack/devenv-python-base:bullseye-2308-1"
