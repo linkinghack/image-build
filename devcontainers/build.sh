@@ -10,7 +10,7 @@ chmod a+x ./init_nodejs.sh
 ## General 
 
 ## 1. Build IDE base image (including node )
-IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-250113-1"
+IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-250113-2"
 BUILD_DIR="./base-image/debian"
 
 # IMAGE_NAME="linkinghack/devenv-base-fedora42-withnode:250113-1"
