@@ -18,15 +18,15 @@
             "upgradePackages": true
         },
         "ghcr.io/linkinghack/devcontainer-features/kubectl-helm-minikube:latest": {},
-        "ghcr.io/devcontainers/features/git:1": {
+        "ghcr.io/linkinghack/devcontainer-features/git:1": {
             "version": "latest",
             "ppa": true
         },
-        "ghcr.io/devcontainers/features/git-lfs:1": {
+        "ghcr.io/linkinghack/devcontainer-features/git-lfs:1": {
             "version": "latest",
             "autoPull": false
         },
-        "ghcr.io/devcontainers/features/docker-in-docker:2": {
+        "ghcr.io/linkinghack/devcontainer-features/docker-in-docker:2": {
             "version": "latest",
             "moby": false,
             "dockerDashComposeVersion": "v2",
@@ -34,13 +34,13 @@
             "dockerDefaultAddressPool": "base=192.166.0.0/16,size=24",
             "installDockerBuildx": true
         },
-        "ghcr.io/devcontainers/features/node:1": {
+        "ghcr.io/linkinghack/devcontainer-features/node:1.6.3": {
             "version": "lts",
             "nodeGypDependencies": true,
             "nvmVersion": "latest",
             "nvmInstallPath": "/usr/local/share/nvm"
         },
-        "ghcr.io/devcontainers/features/python:1": {
+        "ghcr.io/linkinghack/devcontainer-features/python:1.7.0": {
             "version": "3.10"
         }
     },
