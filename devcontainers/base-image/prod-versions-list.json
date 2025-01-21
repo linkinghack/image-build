@@ -1,4 +1,5 @@
 [
     "docker.io/linkinghack/devcontainer-base:bullseye-2308-1",
-    "docker.io/linkinghack/devenv-base-ubuntu-withnode:noble-241114-1"
+    "docker.io/linkinghack/devenv-base-ubuntu-withnode:noble-241114-1",
+    "docker.io/linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3"
 ]

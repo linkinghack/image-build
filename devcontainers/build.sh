@@ -10,15 +10,15 @@ chmod a+x ./init_nodejs.sh
 ## General 
 
 ## 1. Build IDE base image (including node )
-IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3"
-BUILD_DIR="./base-image/debian"
+# IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3"
+# BUILD_DIR="./base-image/debian"
 
 # IMAGE_NAME="linkinghack/devenv-base-fedora42-withnode:250113-1"
 # BUILD_DIR="./base-image/fedora"
 
 # ## 2. Build Java developing environment
-# IMAGE_NAME="linkinghack/devenv-java-ubuntu:2412-1"
-# BUILD_DIR="./java"
+IMAGE_NAME="linkinghack/devenv-java-ubuntu:2501-1"
+BUILD_DIR="./java"
 
 # ## 3. Build Golang developing environment
 # IMAGE_NAME="linkinghack/devenv-golang:bullseye-2501-1"
