@@ -7,5 +7,5 @@
 🛠️ 您可以直接使用`kubectl`, `helm`等命令行工具，也可以使用`docker`命令在本地构建镜像或测试容器应用。
 ---------------
 ☕️ 当前开发环境类型为: Python, Jupyter
-🛠️ 当前环境已安装conda，您可以使用conda来切换多个python版本; 运行命令`anaconda` 来激活conda命令。
+🛠️ 当前环境已安装conda，您可以使用conda来切换多个python版本; `conda env list`, `conda activate base`
 📔 当前环境中安装有Jupyter Lab，您可以使用`jupyter lab`命令来启动，VSCode会自动为您配置Web访问地址；您也可以直接在VSCode中打开Jupyter Notebook文件使用VSCode内嵌式开发。

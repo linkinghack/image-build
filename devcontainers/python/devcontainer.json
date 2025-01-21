@@ -8,6 +8,6 @@
 	"features": {
 		"ghcr.io/devcontainers/features/sshd:1": {}
 	},
-	"remoteUser": "root",
+	"remoteUser": "devspace",
     "containerUser": "devspace"
 }
