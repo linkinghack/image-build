@@ -42,7 +42,7 @@ unset __conda_setup
 
 ## config conda env location
 conda config --add envs_dirs /usr/local/miniconda3/envs
-sudo -u $USERNAME conda config --add envs_dirs /usr/local/miniconda3/envs
+sudo -u $USERNAME /usr/local/miniconda3/bin/conda config --add envs_dirs /usr/local/miniconda3/envs
 ## install more python versions
 conda create -n py38 -q -y  python=3.8
 conda create -n py311 -q -y  python=3.11
