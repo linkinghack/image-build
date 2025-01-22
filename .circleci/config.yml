@@ -46,11 +46,123 @@ jobs:
           name: "Build devcontainer"
           command: "cd devcontainers && bash build.sh"
 
+  build-java-ide:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Setup Buildx"
+          command: "docker buildx create --use"
+      - run:
+          name: "Build Java Ide"
+          command: |
+            cd cloudides/java
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-java:$(date +'%y%m%d-%H') --push .
+            docker buildx imagetools create -t linkinghack/cloudide-java:latest linkinghack/cloudide-java:$(date +'%y%m%d-%H')
+            
+  build-go-ide:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Setup Buildx"
+          command: "docker buildx create --use"
+      - run:
+          name: "Build Go Ide"
+          command: |
+            cd cloudides/go
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-go:$(date +'%y%m%d-%H') --push .
+            docker buildx imagetools create -t linkinghack/cloudide-go:latest linkinghack/cloudide-go:$(date +'%y%m%d-%H')
+  
+  build-nodejs-ide:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Setup Buildx"
+          command: "docker buildx create --use"
+      - run:
+          name: "Build NodeJS Ide"
+          command: |
+            cd cloudides/go
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-nodejs:$(date +'%y%m%d-%H') --push .
+            docker buildx imagetools create -t linkinghack/cloudide-nodejs:latest linkinghack/cloudide-nodejs:$(date +'%y%m%d-%H')
+
+  build-python-ide:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Setup Buildx"
+          command: "docker buildx create --use"
+      - run:
+          name: "Build Python Ide"
+          command: |
+            cd cloudides/go
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-python:$(date +'%y%m%d-%H') --push .
+            docker buildx imagetools create -t linkinghack/cloudide-python:latest linkinghack/cloudide-python:$(date +'%y%m%d-%H')
+
+  build-cxx-ide:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Setup Buildx"
+          command: "docker buildx create --use"
+      - run:
+          name: "Build cxx Ide"
+          command: |
+            cd cloudides/go
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-cxx:$(date +'%y%m%d-%H') --push .
+            docker buildx imagetools create -t linkinghack/cloudide-cxx:latest linkinghack/cloudide-cxx:$(date +'%y%m%d-%H')
+
+  build-allinone-ide:
+    machine:
+      image: ubuntu-2204:2023.02.1
+    steps:
+      - checkout
+      - run:
+          name: "Setup Buildx"
+          command: "docker buildx create --use"
+      - run:
+          name: "Build allinone Ide"
+          command: |
+            cd cloudides/go
+            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-allinone:$(date +'%y%m%d-%H') --push .
+            docker buildx imagetools create -t linkinghack/cloudide-allinone:latest linkinghack/cloudide-allinone:$(date +'%y%m%d-%H')
+
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   image-build-workflow:
     jobs:
-      # - arm-env
-      # - build-image
-      - build-devcontainer
+      - build-image
+    type: approval
+
+  devcontainer-workflow:
+    jobs:
+      - build-devcontainer:
+          type: approval
+  
+  cloudide-workflow:
+    type: approval
+    jobs:
+      - build-java-ide
+      - build-go-ide
+      - build-nodejs-ide
+      - build-python-ide
+      - build-cxx-ide
+      - build-allinone-ide
+    

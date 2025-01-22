@@ -8,9 +8,11 @@
 	"features": {
 		"ghcr.io/linkinghack/devcontainer-features/dotnet:2": {
 			"version": "latest",
-			"additionalVersions": "6,3",
+			"additionalVersions": "8.0",
 			"runtimeOnly": false,
-			"installUsingApt": false
+			"installUsingApt": false,
+			"dotnetRuntimeVersions": "latest,8.0",
+			"aspNetCoreRuntimeVersions": "latest"
 		}
 	},
 	"remoteUser": "root",

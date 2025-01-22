@@ -20,8 +20,7 @@
             "groovyVersion": "latest"
         },
         "ghcr.io/devcontainers/features/go:1": {},
-        "ghcr.io/devcontainers/features/sshd:1": {},
-        "ghcr.io/devcontainers/features/rust:1": {}
+        "ghcr.io/devcontainers/features/sshd:1": {}
 	},
 	"remoteUser": "root",
     "containerUser": "devspace"

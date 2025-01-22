@@ -7,7 +7,7 @@ chmod a+x ./init_nodejs.sh
 ./init_nodejs.sh
 . ~/.profile
 
-## General 
+## General
 
 ## 1. Build IDE base image (including node )
 # IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3"
@@ -37,20 +37,20 @@ chmod a+x ./init_nodejs.sh
 # BUILD_DIR="./python"
 
 ## 7. Build All in One dev env
-# IMAGE_NAME="linkinghack/devenv-allinone-ubuntu:bullseye-2405-1"
-# BUILD_DIR="./all-in-one"
+IMAGE_NAME="linkinghack/devenv-allinone-ubuntu:2501-1"
+BUILD_DIR="./all-in-one"
 
 ## X. Build NodeJS dev env
 # cd ./nodejs; bash build-image.sh
 
 
 #### General build command
-# /usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin/devcontainer build \
-#     --platform linux/arm64,linux/amd64 \
-#     --image-name $IMAGE_NAME \
-#     --workspace-folder $BUILD_DIR \
-#     --config $BUILD_DIR/devcontainer.json \
-#     --push
+/usr/local/lib/nodejs/node-v18.17.1-linux-x64/bin/devcontainer build \
+    --platform linux/arm64,linux/amd64 \
+    --image-name $IMAGE_NAME \
+    --workspace-folder $BUILD_DIR \
+    --config $BUILD_DIR/devcontainer.json \
+    --push
 
 # # Python with CUDA (amd64 only)
 # docker build -t $IMAGE_NAME -f $BULID_DIR/Dockerfile $BUILD_DIR

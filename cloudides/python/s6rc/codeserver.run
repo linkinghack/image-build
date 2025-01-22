@@ -1,0 +1,10 @@
+#!/command/execlineb -P
+
+/usr/local/code-server/bin/code-server \
+    --bind-addr 0.0.0.0:8443 \
+    --user-data-dir /home/devspace/.vscode/data \
+    --extensions-dir /home/devspace/.vscode/extensions \
+    --auth none \
+    --disable-telemetry \
+    --disable-getting-started-override \
+    --extensions-dir /usr/local/share/vscode/extensions \
