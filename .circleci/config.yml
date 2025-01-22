@@ -153,8 +153,9 @@ workflows:
 
   devcontainer-workflow:
     jobs:
-      - build-devcontainer:
+      - build-approve:
           type: approval
+      - build-devcontainer
   
   cloudide-workflow:
     jobs:
