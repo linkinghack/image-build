@@ -148,8 +148,8 @@ jobs:
 workflows:
   image-build-workflow:
     jobs:
-      - build-image
-    type: approval
+      - build-image:
+          type: approval
 
   devcontainer-workflow:
     jobs:
@@ -157,12 +157,17 @@ workflows:
           type: approval
   
   cloudide-workflow:
-    type: approval
     jobs:
-      - build-java-ide
-      - build-go-ide
-      - build-nodejs-ide
-      - build-python-ide
-      - build-cxx-ide
-      - build-allinone-ide
+      - build-java-ide:
+          type: approval
+      - build-go-ide:
+          type: approval
+      - build-nodejs-ide:
+          type: approval
+      - build-python-ide:
+          type: approval
+      - build-cxx-ide:
+          type: approval
+      - build-allinone-ide:
+          type: approval
     
