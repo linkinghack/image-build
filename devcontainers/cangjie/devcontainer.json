@@ -1,0 +1,12 @@
+{
+    "name": "Cangjie development environment Image",
+	"build": {
+		"dockerfile": "./Dockerfile",
+		"context": ".",
+        "args": {}
+	},
+	"features": {
+	},
+	"remoteUser": "devspace",
+    "containerUser": "devspace"
+}

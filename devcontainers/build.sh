@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x
 docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
+docker login ghcr.io -u linkinghack -p $GITHUB_TOKEN
 
 ## Init NodeJS env
 chmod a+x ./init_nodejs.sh
@@ -32,8 +33,8 @@ chmod a+x ./init_nodejs.sh
 # IMAGE_NAME="linkinghack/devenv-cxx14-ubuntu:2501-1"
 # BUILD_DIR="./cxx"
 
-IMAGE_NAME="linkinghack/devenv-cxx7-ubuntu:2501-1"
-BUILD_DIR="./cxx/gcc7"
+# IMAGE_NAME="linkinghack/devenv-cxx7-ubuntu:2501-1"
+# BUILD_DIR="./cxx/gcc7"
 
 ## 6. Build Python dev env
 # IMAGE_NAME="linkinghack/devenv-python-ubuntu:2501-1"
@@ -42,6 +43,10 @@ BUILD_DIR="./cxx/gcc7"
 ## 7. Build All in One dev env
 # IMAGE_NAME="linkinghack/devenv-allinone-ubuntu:2501-1"
 # BUILD_DIR="./all-in-one"
+
+## 8. Build cangjie dev env
+IMAGE_NAME="linkinghack/devenv-cangjie-ubuntu:2501-1"
+BUILD_DIR="./cangjie"
 
 ## X. Build NodeJS dev env
 # cd ./nodejs; bash build-image.sh
