@@ -59,8 +59,9 @@ jobs:
           command: |
             cd cloudides/java
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-java:$(date +'%y%m%d-%H') --push .
-            docker buildx imagetools create -t linkinghack/cloudide-java:latest linkinghack/cloudide-java:$(date +'%y%m%d-%H')
+            export TAG=$(date +'%y%m%d-%H')
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-java:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-java:latest linkinghack/cloudide-java:$TAG
             
   build-go-ide:
     machine:
@@ -75,8 +76,8 @@ jobs:
           command: |
             cd cloudides/go
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-go:$(date +'%y%m%d-%H') --push .
-            docker buildx imagetools create -t linkinghack/cloudide-go:latest linkinghack/cloudide-go:$(date +'%y%m%d-%H')
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-go:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-go:latest linkinghack/cloudide-go:$TAG
   
   build-nodejs-ide:
     machine:
@@ -91,8 +92,9 @@ jobs:
           command: |
             cd cloudides/go
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-nodejs:$(date +'%y%m%d-%H') --push .
-            docker buildx imagetools create -t linkinghack/cloudide-nodejs:latest linkinghack/cloudide-nodejs:$(date +'%y%m%d-%H')
+            export TAG=$(date +'%y%m%d-%H')
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-nodejs:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-nodejs:latest linkinghack/cloudide-nodejs:$TAG
 
   build-python-ide:
     machine:
@@ -107,8 +109,9 @@ jobs:
           command: |
             cd cloudides/go
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-python:$(date +'%y%m%d-%H') --push .
-            docker buildx imagetools create -t linkinghack/cloudide-python:latest linkinghack/cloudide-python:$(date +'%y%m%d-%H')
+            export TAG=$(date +'%y%m%d-%H')
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-python:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-python:latest linkinghack/cloudide-python:$TAG
 
   build-cxx-ide:
     machine:
@@ -119,12 +122,13 @@ jobs:
           name: "Setup Buildx"
           command: "docker buildx create --use"
       - run:
-          name: "Build cxx Ide"
+           name: "Build cxx Ide"
           command: |
             cd cloudides/go
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-cxx:$(date +'%y%m%d-%H') --push .
-            docker buildx imagetools create -t linkinghack/cloudide-cxx:latest linkinghack/cloudide-cxx:$(date +'%y%m%d-%H')
+            export TAG=$(date +'%y%m%d-%H')
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-cxx:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-cxx:latest linkinghack/cloudide-cxx:$TAG
 
   build-allinone-ide:
     machine:
@@ -139,36 +143,34 @@ jobs:
           command: |
             cd cloudides/go
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-allinone:$(date +'%y%m%d-%H') --push .
-            docker buildx imagetools create -t linkinghack/cloudide-allinone:latest linkinghack/cloudide-allinone:$(date +'%y%m%d-%H')
+            export TAG=$(date +'%y%m%d-%H')
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-allinone:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-allinone:latest linkinghack/cloudide-allinone:$TAG
 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  image-build-workflow:
-    jobs:
-      - build-image:
-          type: approval
+  # image-build-workflow:
+  #   jobs:
+  #     - build-image
 
   devcontainer-workflow:
     jobs:
-      - build-approve:
-          type: approval
       - build-devcontainer
   
-  cloudide-workflow:
-    jobs:
-      - build-java-ide:
-          type: approval
-      - build-go-ide:
-          type: approval
-      - build-nodejs-ide:
-          type: approval
-      - build-python-ide:
-          type: approval
-      - build-cxx-ide:
-          type: approval
-      - build-allinone-ide:
-          type: approval
+  # cloudide-workflow:
+  #   jobs:
+  #     - build-java-ide
+          
+  #     - build-go-ide
+          
+  #     - build-nodejs-ide
+          
+  #     - build-python-ide
+          
+  #     - build-cxx-ide
+          
+  #     - build-allinone-ide
+          
     

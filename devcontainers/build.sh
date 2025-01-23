@@ -29,11 +29,11 @@ chmod a+x ./init_nodejs.sh
 # BUILD_DIR="./dotnet"
 
 ## 5. Build CXX dev env
-IMAGE_NAME="linkinghack/devenv-cxx14-ubuntu:2501-1"
-BUILD_DIR="./cxx"
+# IMAGE_NAME="linkinghack/devenv-cxx14-ubuntu:2501-1"
+# BUILD_DIR="./cxx"
 
-# IMAGE_NAME="linkinghack/devenv-cxx7-ubuntu:2501-1"
-# BUILD_DIR="./cxx/gcc7"
+IMAGE_NAME="linkinghack/devenv-cxx7-ubuntu:2501-1"
+BUILD_DIR="./cxx/gcc7"
 
 ## 6. Build Python dev env
 # IMAGE_NAME="linkinghack/devenv-python-ubuntu:2501-1"
