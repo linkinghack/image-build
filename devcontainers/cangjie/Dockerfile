@@ -1,4 +1,4 @@
-FROM ghcr.io/linkinghack/tools/cj-sdk:0.53.13 as sdk
+FROM docker.io/linkinghack/cj-sdk:0.53.13 as sdk
 
 FROM linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3
 
