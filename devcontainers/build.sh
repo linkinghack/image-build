@@ -65,4 +65,4 @@ BUILD_DIR="./cangjie"
 # docker push $IMAGE_NAME
 
 ## NodeJS
-cd nodejs; bash build-image.sh
+# cd nodejs; bash build-image.sh
