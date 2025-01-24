@@ -17,6 +17,11 @@ USER root
 #   && make install \
 #   && cd .. \
 #   && rm -rf openssl-3.4.0 openssl-3.4.0.tar.gz
+# install cangjie SDK dependencies
+RUN  apt-get update -y \
+    && apt-get install binutils libc-dev libc++-dev libgcc-9-dev  build-essential perl libperl-dev -y \
+    && apt-get clean \
+    && apt-get autoclean
 
 RUN --mount=type=bind,from=openssl,source=/usr/local/openssl-3.4.0,dst=/sdk/openssl \
     cd /sdk/openssl \
@@ -24,16 +29,9 @@ RUN --mount=type=bind,from=openssl,source=/usr/local/openssl-3.4.0,dst=/sdk/open
     && ls -alh /usr/local/openssl-3.4.0
 
 # install conan, openssl
-RUN pip install conan \
-  && echo "export LIBRARY_PATH=/usr/local/openssl-3.4.0/lib:$LIBRARY_PATH" >> /etc/profile \
+RUN  echo "export LIBRARY_PATH=/usr/local/openssl-3.4.0/lib:$LIBRARY_PATH" >> /etc/profile \
   && echo "<prefix>/lib" >> /etc/ld.so.conf \
   && ldconfig
-
-# install cangjie SDK dependencies
-RUN  apt-get update -y \
-    && apt-get install binutils libc-dev libc++-dev libgcc-9-dev -y \
-    && apt-get clean \
-    && apt-get autoclean
 
 COPY envsetup.sh /etc/profile.d/envsetup.sh
 
