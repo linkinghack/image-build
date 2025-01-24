@@ -25,7 +25,7 @@ RUN --mount=type=bind,from=/usr/local/openssl-3.4.0,dst=/sdk/openssl \
 
 # install conan, openssl
 RUN pip install conan \
-  && echo "export LIBRARY_PATH=/usr/local/openssl-3.4.0/lib:$LIBRARY_PATH" >> /etc/profile
+  && echo "export LIBRARY_PATH=/usr/local/openssl-3.4.0/lib:$LIBRARY_PATH" >> /etc/profile \
   && echo "<prefix>/lib" >> /etc/ld.so.conf \
   && ldconfig
 
