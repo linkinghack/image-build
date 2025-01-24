@@ -11,8 +11,8 @@ chmod a+x ./init_nodejs.sh
 ## General
 
 ## 1. Build IDE base image (including node )
-# IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3"
-# BUILD_DIR="./base-image/debian"
+IMAGE_NAME="linkinghack/devenv-base-ubuntu-withnode:focal-250124-1"
+BUILD_DIR="./base-image/ubuntu"
 
 # IMAGE_NAME="linkinghack/devenv-base-fedora42-withnode:250113-1"
 # BUILD_DIR="./base-image/fedora"
@@ -33,8 +33,8 @@ chmod a+x ./init_nodejs.sh
 # IMAGE_NAME="linkinghack/devenv-cxx14-ubuntu:2501-1"
 # BUILD_DIR="./cxx"
 
-IMAGE_NAME="linkinghack/devenv-cxx7-ubuntu:2501-1"
-BUILD_DIR="./cxx/gcc7"
+# IMAGE_NAME="linkinghack/devenv-cxx7-ubuntu:2501-1"
+# BUILD_DIR="./cxx/gcc7"
 
 ## 6. Build Python dev env
 # IMAGE_NAME="linkinghack/devenv-python-ubuntu:2501-1"
