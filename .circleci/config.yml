@@ -90,7 +90,7 @@ jobs:
       - run:
           name: "Build NodeJS Ide"
           command: |
-            cd cloudides/go
+            cd cloudides/nodejs
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
             export TAG=$(date +'%y%m%d-%H')
             docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-nodejs:$TAG --push .
@@ -113,7 +113,7 @@ jobs:
             docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-python:$TAG --push .
             docker buildx imagetools create -t linkinghack/cloudide-python:latest linkinghack/cloudide-python:$TAG
 
-  build-cxx-ide:
+  build-cxx14-ide:
     machine:
       image: ubuntu-2204:2023.02.1
     steps:
@@ -127,8 +127,8 @@ jobs:
             cd cloudides/go
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
             export TAG=$(date +'%y%m%d-%H')
-            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-cxx:$TAG --push .
-            docker buildx imagetools create -t linkinghack/cloudide-cxx:latest linkinghack/cloudide-cxx:$TAG
+            docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-cxx14:$TAG --push .
+            docker buildx imagetools create -t linkinghack/cloudide-cxx14:latest linkinghack/cloudide-cxx14:$TAG
 
   build-allinone-ide:
     machine:

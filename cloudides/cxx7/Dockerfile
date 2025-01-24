@@ -1,7 +1,7 @@
 FROM lscr.io/linuxserver/code-server:4.96.4-ls250 as vscode
 
 # FROM lscr.io/linuxserver/code-server:4.4.0-ls125
-FROM linkinghack/devenv-cxx-ubuntu:clang14-2405-1
+FROM linkinghack/devenv-cxx7-ubuntu:2501-1
 
 # For CangjieENV update notice
 # COPY first-run-notice.txt  /usr/local/etc/vscode-dev-containers/first-run-notice.txt
