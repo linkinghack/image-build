@@ -1,5 +1,5 @@
 FROM docker.io/linkinghack/cj-sdk:0.53.13 AS sdk
-FROM docker.io/linkinghack/openssl-prebuild:3.4.0 AS openssl
+# FROM docker.io/linkinghack/openssl-prebuild:3.4.0 AS openssl
 
 FROM linkinghack/devenv-base-ubuntu-withnode:jammy-250113-3
 
@@ -19,14 +19,14 @@ USER root
 #   && rm -rf openssl-3.4.0 openssl-3.4.0.tar.gz
 # install cangjie SDK dependencies
 RUN  apt-get update -y \
-    && apt-get install binutils libc-dev libc++-dev libgcc-9-dev  build-essential perl libperl-dev -y \
+    && apt-get install binutils libc-dev libc++-dev libgcc-9-dev  build-essential perl libperl-dev libssl-dev libssl3 -y \
     && apt-get clean \
     && apt-get autoclean
 
-RUN --mount=type=bind,from=openssl,source=/usr/local/openssl-3.4.0,dst=/sdk/openssl \
-    cd /sdk/openssl \
-    && make install \
-    && ls -alh /usr/local/openssl-3.4.0
+# RUN --mount=type=bind,from=openssl,source=/usr/local/openssl-3.4.0,dst=/sdk/openssl \
+#     cd /sdk/openssl \
+#     && make install \
+#     && ls -alh /usr/local/openssl-3.4.0
 
 # install conan, openssl
 RUN  echo "export LIBRARY_PATH=/usr/local/openssl-3.4.0/lib:$LIBRARY_PATH" >> /etc/profile \
