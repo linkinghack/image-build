@@ -26,7 +26,7 @@ case "${shell_name}" in
         ;;
 esac
 
-export CANGJIE_HOME=${script_dir}
+export CANGJIE_HOME=/usr/local/cangjie
 
 hw_arch=$(arch)
 if [ "$hw_arch" = "" ]; then
