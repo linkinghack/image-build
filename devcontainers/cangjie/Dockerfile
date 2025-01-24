@@ -18,7 +18,7 @@ USER root
 #   && cd .. \
 #   && rm -rf openssl-3.4.0 openssl-3.4.0.tar.gz
 
-RUN --mount=type=bind,from=/usr/local/openssl-3.4.0,dst=/sdk/openssl \
+RUN --mount=type=bind,from=openssl,source=/usr/local/openssl-3.4.0,dst=/sdk/openssl \
     cd /sdk/openssl \
     && make install \
     && ls -alh /usr/local/openssl-3.4.0
