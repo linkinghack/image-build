@@ -203,7 +203,9 @@ workflows:
           
       - build-python-ide
           
-      - build-cxx-ide
+      - build-cxx14-ide
+
+      - build-cxx7-ide
           
       - build-allinone-ide
           
