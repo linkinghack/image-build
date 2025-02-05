@@ -36,6 +36,9 @@ RUN  echo "export LIBRARY_PATH=/usr/local/openssl-3.4.0/lib:$LIBRARY_PATH" >> /e
 COPY envsetup.sh /etc/profile.d/envsetup.sh
 
 USER devspace
+RUN cat /etc/profile.d/envsetup.sh >> ~/.bashrc \
+  && cat /etc/profile.d/envsetup.sh >> ~/.zshrc
+  
 # ARG hw_arch=$(arch)
 # ENV CANGJIE_HOME=/usr/local/cangjie
 # ENV PATH=${CANGJIE_HOME}/bin:${CANGJIE_HOME}/tools/bin:$PATH:${HOME}/.cjpm/bin
