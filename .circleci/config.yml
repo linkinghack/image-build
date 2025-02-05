@@ -185,7 +185,7 @@ jobs:
       - run:
           name: "Build cangjie Ide"
           command: |
-            cd cloudides/go
+            cd cloudides/cangjie
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASSWORD
             docker buildx build --platform linux/amd64,linux/arm64 -t linkinghack/cloudide-cangjie:$TAG --push .
             docker buildx imagetools create -t linkinghack/cloudide-cangjie:latest linkinghack/cloudide-cangjie:$TAG
@@ -204,19 +204,19 @@ workflows:
   
   cloudide-workflow:
     jobs:
-      - build-java-ide
+      # - build-java-ide
           
-      - build-go-ide
+      # - build-go-ide
           
-      - build-nodejs-ide
+      # - build-nodejs-ide
           
-      - build-python-ide
+      # - build-python-ide
           
-      - build-cxx14-ide
+      # - build-cxx14-ide
 
-      - build-cxx7-ide
+      # - build-cxx7-ide
           
-      - build-allinone-ide
+      # - build-allinone-ide
           
       - build-cangjie-ide
     
