@@ -1,4 +1,4 @@
-FROM lscr.io/linuxserver/code-server:4.96.4-ls250 as vscode
+FROM lscr.io/linuxserver/code-server:4.96.4-ls252 as vscode
 
 FROM linkinghack/devenv-java-ubuntu:2405-1
 
