@@ -194,9 +194,9 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  # image-build-workflow:
-  #   jobs:
-  #     - build-image
+  image-build-workflow:
+    jobs:
+      - build-image
 
   # devcontainer-workflow:
   #   jobs:
@@ -218,5 +218,5 @@ workflows:
           
       # - build-allinone-ide
           
-      - build-cangjie-ide
+      # - build-cangjie-ide
     
