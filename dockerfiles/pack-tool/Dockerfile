@@ -1,10 +1,6 @@
-FROM ubuntu:jammy
+FROM linkinghack/devenv-base-ubuntu-withnode:focal-250124-1
 
 RUN apt update && apt install software-properties-common -y \
   && add-apt-repository ppa:cncf-buildpacks/pack-cli \
   && apt update \
   && apt-get install pack-cli vim git net-tools curl wget -y
-
-# Install Docker
-COPY ./install_docker.sh /tmp/install_docker.sh
-RUN chmod +x /tmp/install_docker.sh && /tmp/install_docker.sh

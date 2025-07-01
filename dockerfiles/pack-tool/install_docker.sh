@@ -23,7 +23,7 @@ DOCKER_LICENSED_ARCHIVE_VERSION_CODENAMES="bookworm buster bullseye bionic focal
 DISABLE_IP6_TABLES="${DISABLEIP6TABLES:-false}"
 
 # Default: Exit on any failure.
-set -e
+set -exu
 
 # Clean up
 rm -rf /var/lib/apt/lists/*
