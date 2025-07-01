@@ -202,8 +202,8 @@ workflows:
   #   jobs:
   #     - build-devcontainer
   
-  cloudide-workflow:
-    jobs:
+  # cloudide-workflow:
+  #   jobs:
       # - build-java-ide
           
       # - build-go-ide
